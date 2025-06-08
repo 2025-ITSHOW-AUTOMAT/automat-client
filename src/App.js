@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Shoot from './route/shoot/shoot';
+import Shoot from './pages/shoot/shoot';
 
 function App() {
   return (

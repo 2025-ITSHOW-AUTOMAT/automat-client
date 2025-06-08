@@ -45,6 +45,32 @@ function Shoot() {
         setCapturedImages([...capturedImages, imageSrc]);
     };
 
+    const sendImages = async (images) => {
+        const today = new Date();
+        // const dateStr = today.toISOString().slice(0, 10).replace(/-/g, "");
+        // const experienceId = 1;
+
+        const payload = {
+            images: images,
+        };
+        
+        const response = await fetch("http://localhost:8000/photo/save", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+        });
+    
+        const result = await response.json();
+        console.log("Saved paths:", result.saved_paths);
+    };
+
+    const handleClick = () => {
+        if (capturedImages.length < 3) return;
+        sendImages(capturedImages);
+    };
+
     return (
         <div style={{ textAlign: "center", padding: "20px" }}>
             <Camera ref={webcamRef} />
@@ -53,10 +79,10 @@ function Shoot() {
                 <h2 style={{ fontSize: "24px", margin: "20px 0" }}>
                     촬영까지: {countdown}초
                 </h2>
-            ) : (
+            ) : capturedImages.length < 3 ? (
                 <button
                     onClick={handleStartCapture}
-                    disabled={capturedImages.length >= 3}
+                    disabled={isCapturing}
                     style={{
                         fontSize: "16px",
                         color: "#000",
@@ -66,7 +92,22 @@ function Shoot() {
                         marginTop: "20px",
                     }}
                 >
-                    {capturedImages.length < 3 ? "사진 촬영" : "촬영 완료"}
+                    사진 촬영
+                </button>
+            ) : (
+                <button
+                    onClick={handleClick}
+                    style={{
+                        fontSize: "16px",
+                        backgroundColor: "#4CAF50",
+                        color: "white",
+                        borderRadius: "6px",
+                        border: "none",
+                        cursor: "pointer",
+                        marginTop: "20px",
+                    }}
+                >
+                    촬영 완료
                 </button>
             )}
 
