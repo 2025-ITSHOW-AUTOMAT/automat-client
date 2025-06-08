@@ -46,24 +46,25 @@ function Shoot() {
     };
 
     const sendImages = async (images) => {
-        const today = new Date();
-        // const dateStr = today.toISOString().slice(0, 10).replace(/-/g, "");
-        // const experienceId = 1;
-
         const payload = {
             images: images,
         };
         
-        const response = await fetch("http://localhost:8000/photo/save", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-        });
+        try {
+            const response = await fetch("http://localhost:8000/photo/save", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
     
-        const result = await response.json();
-        console.log("Saved paths:", result.saved_paths);
+            const result = await response.json();
+            console.log("Saved paths:", result.saved_paths);
+            console.log("Generated prompt:", result.prompts);
+        } catch (error) {
+            console.error("이미지 업로드 오류:", error);
+        }
     };
 
     const handleClick = () => {
