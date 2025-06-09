@@ -41,8 +41,8 @@ function Shoot() {
         ctx.scale(-1, 1);
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     
-        const imageSrc = canvas.toDataURL("image/jpeg", 1.0);
-        setCapturedImages([...capturedImages, imageSrc]);
+        const imageSrc = canvas.toDataURL("image/png", 1.0);
+        setCapturedImages((prev) => [...prev, imageSrc]);
     };
 
     const sendImages = async (images) => {
@@ -61,7 +61,9 @@ function Shoot() {
     
             const result = await response.json();
             console.log("Saved paths:", result.saved_paths);
-            console.log("Generated prompt:", result.prompts);
+            console.log("Generated prompts:", result.prompts);
+            console.log("Song prompt:", result.song_prompt);
+            console.log("Detected genre:", result.genre);
         } catch (error) {
             console.error("이미지 업로드 오류:", error);
         }
@@ -73,11 +75,11 @@ function Shoot() {
     };
 
     return (
-        <div style={{ textAlign: "center", padding: "20px" }}>
+        <div style={{ textAlign: "center", padding: "5vw" }}>
             <Camera ref={webcamRef} />
 
             {countdown !== null ? (
-                <h2 style={{ fontSize: "24px", margin: "20px 0" }}>
+                <h2 style={{ fontSize: "5vw", margin: "10vw 0" }}>
                     촬영까지: {countdown}초
                 </h2>
             ) : capturedImages.length < 3 ? (
@@ -85,12 +87,13 @@ function Shoot() {
                     onClick={handleStartCapture}
                     disabled={isCapturing}
                     style={{
-                        fontSize: "16px",
+                        fontSize: "5vw",
                         color: "#000",
-                        borderRadius: "6px",
+                        borderRadius: "3vw",
                         border: "none",
+                        padding: "1vw 2vw",
                         cursor: "pointer",
-                        marginTop: "20px",
+                        marginTop: "10vw",
                     }}
                 >
                     사진 촬영
@@ -99,30 +102,31 @@ function Shoot() {
                 <button
                     onClick={handleClick}
                     style={{
-                        fontSize: "16px",
+                        fontSize: "5vw",
                         backgroundColor: "#4CAF50",
                         color: "white",
-                        borderRadius: "6px",
+                        borderRadius: "3vw",
                         border: "none",
+                        padding: "1vw 2vw",
                         cursor: "pointer",
-                        marginTop: "20px",
+                        marginTop: "10vw",
                     }}
                 >
                     촬영 완료
                 </button>
             )}
 
-            <div style={{ display: "flex", gap: "10px", marginTop: "20px", justifyContent: "center" }}>
+            <div style={{ display: "flex", gap: "3vw", marginTop: "8vw", justifyContent: "center" }}>
                 {capturedImages.map((img, index) => (
                     <img
                         key={index}
                         src={img}
-                        alt={`캡처 ${index + 1}`}
+                        alt={`사진 ${index + 1}`}
                         style={{
-                            width: "10em",
-                            height: "10em", 
+                            width: "25vw",
+                            height: "25vw", 
                             bjectFit: "cover",
-                            borderRadius: "6px"
+                            borderRadius: "1.5vw"
                         }}
                     />
                 ))}

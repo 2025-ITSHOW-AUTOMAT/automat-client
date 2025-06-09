@@ -12,16 +12,16 @@ const Camera = forwardRef((props, ref) => {
         <Webcam
             audio={false}
             ref={ref}
-            screenshotFormat="image/jpeg"
+            screenshotFormat="image/png"
             videoConstraints={videoConstraints}
             style={{
                 position: "fixed",
-                bottom: "20px",
-                right: "20px",
-                width: "150px",
-                height: "150px",
-                borderRadius: "10px",
-                boxShadow: "0 0 10px #ccc",
+                bottom: "5vw",
+                right: "5vw",
+                width: "30vw",
+                height: "30vw",
+                borderRadius: "3vw",
+                boxShadow: "0 0 3vw #ccc",
                 transform: "scaleX(-1)",
                 zIndex: 1000,
             }}
