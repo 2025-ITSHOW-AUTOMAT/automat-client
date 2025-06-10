@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Camera from "../../components/camera";
 
 function Shoot() {
@@ -6,6 +7,7 @@ function Shoot() {
     const [countdown, setCountdown] = useState(null);
     const [capturedImages, setCapturedImages] = useState([]);
     const [isCapturing, setIsCapturing] = useState(false);
+    const navigate = useNavigate();
 
     const handleStartCapture = () => {
         if (capturedImages.length >= 3 || isCapturing) return;
@@ -45,33 +47,39 @@ function Shoot() {
         setCapturedImages((prev) => [...prev, imageSrc]);
     };
 
-    const sendImages = async (images) => {
-        const payload = {
-            images: images,
-        };
+    // const sendImages = async (images) => {
+    //     const payload = {
+    //         images: images,
+    //     };
         
-        try {
-            const response = await fetch("http://localhost:8000/photo/save", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(payload),
-            });
+    //     try {
+    //         const response = await fetch("http://localhost:8000/photo/save", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(payload),
+    //         });
     
-            const result = await response.json();
-            console.log("Saved paths:", result.saved_paths);
-            console.log("Generated prompts:", result.prompts);
-            console.log("Song prompt:", result.song_prompt);
-            console.log("Detected genre:", result.genre);
-        } catch (error) {
-            console.error("이미지 업로드 오류:", error);
-        }
-    };
+    //         const result = await response.json();
+    //         console.log("Saved paths:", result.saved_paths);
+    //         console.log("Generated prompts:", result.prompts);
+    //         console.log("Song prompt:", result.song_prompt);
+    //         console.log("Detected genre:", result.genre);
+
+    //         const audioBase64 = result.audio_base64;
+
+    //         navigate("/song", { state: { audioBase64 } });
+    //     } catch (error) {
+    //         console.error("이미지 업로드 오류:", error);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
     const handleClick = () => {
         if (capturedImages.length < 3) return;
-        sendImages(capturedImages);
+        navigate("/loading", { state: { capturedImages } });
     };
 
     return (

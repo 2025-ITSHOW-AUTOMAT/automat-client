@@ -1,14 +1,19 @@
-// import logo from './logo.svg';
-import './App.css';
-import Shoot from './pages/shoot/shoot';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Shoot from "./pages/shoot/shoot";
+import Loading from "./pages/song/loading";
+import Song from "./pages/song/song";
 
 function App() {
-  return (
-    <div>
-      <h1 style={{ textAlign: "center", marginTop: "20px" }}>사진 촬영</h1>
-      <Shoot />
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/shoot" element={<Shoot />} />
+                <Route path="/loading" element={<Loading />} />
+                <Route path="/song" element={<Song />} />
+                <Route path="*" element={<Shoot />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
