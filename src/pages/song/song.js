@@ -34,10 +34,11 @@ function Song() {
             <h1>생성된 노래 재생</h1>
             <audio
                 ref={audioRef}
-                src={`data:audio/mp3;base64,${audioBase64}`}
+                src={`data:audio/wav;base64,${audioBase64}`}
                 controls={false}
                 onEnded={() => setIsPlaying(false)}
             />
+
             <button
                 onClick={togglePlay}
                 style={{
