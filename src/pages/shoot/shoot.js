@@ -15,7 +15,7 @@ function Shoot() {
 
         setCountdown(5);
         setIsCapturing(true);
-        let count = 5;
+        let count = 2;
 
         const interval = setInterval(() => {
             count -= 1;
