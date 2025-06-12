@@ -15,6 +15,10 @@ function Canvas(){
 
     const socket = new WebSocket('ws://localhost:8080/emotion/ws');
     wsRef.current = socket;
+
+    socket.onopen = () => {
+      console.log("WebSocket 연결 성공");
+    }
     
     socket.onerror = (e) => {
       console.error("WebSocket 연결 실패", e);
@@ -64,7 +68,7 @@ function Canvas(){
     canvas.height = canvas.offsetHeight;
     
     ctx.lineJoin = "round";
-    ctx.lineWidth = 2.5;
+    ctx.lineWidth = 1.5;
     setGetCtx(ctx);
 
   }, [])
@@ -91,7 +95,7 @@ function Canvas(){
     <div>
       <canvas
         ref={canvasRef}
-        style={{ width: "444px", aspectRatio: '1/1', border: 'solid 1px rgba(0, 164, 200, 0.05)', borderRadius: '5px'}}
+        style={{ width: "280px", aspectRatio: '1/1', border: 'solid 1px rgba(0, 164, 200, 0.1)', borderRadius: '5px'}}
         onMouseDown={() => setPainting(true)}
         onMouseUp={() => setPainting(false)}
         onMouseMove={e => drawFn(e)}

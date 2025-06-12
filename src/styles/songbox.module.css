@@ -1,0 +1,27 @@
+*{
+  font-family: 'Pretendard';
+}
+
+.container{
+  background: linear-gradient(to right, rgba(208, 230, 236, 0.1), rgba(211, 233, 239, 0.2));
+  border: solid 1px rgba(178, 212, 218, 0.2);
+  border-radius: 8px;
+  padding: 39px 20px;
+}
+
+.editbtn{
+  display: flex;
+  margin-left: auto;
+  margin-bottom: 20px;
+  width: fit-content;
+  background: linear-gradient(to right, rgba(208, 230, 236, 0.1));
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  color: #00A4C8;
+  font-weight: 500;
+  padding: 10px;
+  border-radius:5px;
+  border: solid 1px rgba(0, 164, 200, 0.1);
+}

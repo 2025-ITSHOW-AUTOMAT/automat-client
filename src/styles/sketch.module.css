@@ -1,8 +1,20 @@
+.header{
+  font-size: 12px;
+  font-weight: 600;
+  color: #1C1C1C;
+  width: 100%;
+  padding: 14px 0;
+  background-color: white;
+  border: solid 1px #B2D4DA;
+  border-radius: 10px;
+  text-align: center;
+}
 
 .maincontainer{
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  padding: 20px;
+  gap: 12px;
   background-color: white;
   border: solid 1px #b2d4da;
   border-radius: 10px;
@@ -10,6 +22,7 @@
 }
 
 .sketchbox{
+  padding: 5px;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -19,13 +32,31 @@
 .colorchip{
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin: 41px;
+  gap: 11px;
+  margin: 0 27px;
 }
 
-.colorchip>div{
-  width: 5vw;
-  max-width: 36px;
+.colorchip>div>div{
+  width: 25px;
   aspect-ratio: 1/1;
   border-radius: 50%;
+}
+
+.colorchip>div>p{
+  font-size: 11px;
+  font-weight: 300;
+  margin: 0;
+  color: #aaaaaa
+}
+
+.footer{
+  font-size: 12px;
+  font-weight: 600;
+  color: #1C1C1C;
+  width: 100%;
+  padding: 14px 0;
+  background-color: white;
+  border: solid 1px #B2D4DA;
+  border-radius: 10px;
+  text-align: center;
 }
