@@ -21,15 +21,18 @@ function Loading() {
                     body: JSON.stringify({ images: capturedImages }),
                 });
                 const result = await response.json();
-        
-                const { song_prompt, genre } = result;
+
+                console.log("Saved paths:", result.saved_paths);
+                console.log("Generated prompts:", result.prompts);
+                console.log("Song prompt:", result.song_prompt);
+
+                const { song_prompt } = result;
         
                 const songRes = await fetch("http://localhost:8000/song/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         prompts: song_prompt,
-                        genre: genre,
                         duration_sec: 45
                     }),
                 });
