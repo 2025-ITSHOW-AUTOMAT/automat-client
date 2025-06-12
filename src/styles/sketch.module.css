@@ -1,0 +1,31 @@
+
+.maincontainer{
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  background-color: white;
+  border: solid 1px #b2d4da;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.sketchbox{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.colorchip{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 41px;
+}
+
+.colorchip>div{
+  width: 5vw;
+  max-width: 36px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
