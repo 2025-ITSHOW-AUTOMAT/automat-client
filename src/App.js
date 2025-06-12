@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Shoot from "./pages/shoot/shoot";
 import Loading from "./pages/song/loading";
 import Song from "./pages/song/song";
-import Sketch from "./pages/sketch/sketch" 
+import Sketch from "./pages/detail/sketch" 
 
 function App() {
     return (

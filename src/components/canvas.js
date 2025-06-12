@@ -1,19 +1,25 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import Camera from "./camera";
 
-function Canvas(){
+const Canvas = forwardRef((props, ref) => {
   const cameraRef = useRef(null);
   const frameRef = useRef(null);
   const canvasRef = useRef(null);
   const wsRef = useRef(null);
   const [getCtx, setGetCtx] = useState(null);
   const [painting, setPainting] = useState(false);
-  const [femotion, setEmotion] = useState('분석중');
   const [fcolor, setColor] = useState('#000000');
+
+  useImperativeHandle(ref, () => ({
+    getImageBase64: () => {
+      const canvas = canvasRef.current;
+      return canvas.toDataURL("image/png");
+    }
+  }));
 
   useEffect(()=>{
 
-    const socket = new WebSocket('ws://localhost:8080/emotion/ws');
+    const socket = new WebSocket('ws://localhost:8087/emotion/ws');
     wsRef.current = socket;
 
     socket.onopen = () => {
@@ -26,7 +32,6 @@ function Canvas(){
 
     socket.onmessage = (event) => {
       const { emotion, color } = JSON.parse(event.data);
-      setEmotion(emotion);
       if(color) setColor(color);
     };
 
@@ -94,6 +99,7 @@ function Canvas(){
   return(
     <div>
       <canvas
+        id='cover'
         ref={canvasRef}
         style={{ width: "280px", aspectRatio: '1/1', border: 'solid 1px rgba(0, 164, 200, 0.1)', borderRadius: '5px'}}
         onMouseDown={() => setPainting(true)}
@@ -105,6 +111,6 @@ function Canvas(){
       <canvas ref={frameRef} width="320" height="240" hidden />
     </div>
   )
-}
+});
 
 export default Canvas;
