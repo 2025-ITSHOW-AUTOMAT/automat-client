@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Camera from "../../components/camera";
+import Countdown from "../../components/countdown";
 
 function Shoot() {
     const webcamRef = useRef(null);
@@ -47,36 +48,6 @@ function Shoot() {
         setCapturedImages((prev) => [...prev, imageSrc]);
     };
 
-    // const sendImages = async (images) => {
-    //     const payload = {
-    //         images: images,
-    //     };
-        
-    //     try {
-    //         const response = await fetch("http://localhost:8000/photo/save", {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(payload),
-    //         });
-    
-    //         const result = await response.json();
-    //         console.log("Saved paths:", result.saved_paths);
-    //         console.log("Generated prompts:", result.prompts);
-    //         console.log("Song prompt:", result.song_prompt);
-    //         console.log("Detected genre:", result.genre);
-
-    //         const audioBase64 = result.audio_base64;
-
-    //         navigate("/song", { state: { audioBase64 } });
-    //     } catch (error) {
-    //         console.error("이미지 업로드 오류:", error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
     const handleClick = () => {
         if (capturedImages.length < 3) return;
         navigate("/loading", { state: { capturedImages } });
@@ -87,10 +58,8 @@ function Shoot() {
             <Camera ref={webcamRef} />
 
             {countdown !== null ? (
-                <h2 style={{ fontSize: "5vw", margin: "10vw 0" }}>
-                    촬영까지: {countdown}초
-                </h2>
-            ) : capturedImages.length < 3 ? (
+            <Countdown number={countdown} />
+        ) : capturedImages.length < 3 ? (
                 <button
                     onClick={handleStartCapture}
                     disabled={isCapturing}
