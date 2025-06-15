@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Camera from "../../components/camera";
+import Countdown from "../../components/countdown";
 
 function Shoot() {
     const webcamRef = useRef(null);
@@ -31,64 +32,37 @@ function Shoot() {
 
     const capture = () => {
         if (!webcamRef.current) return;
-    
+
         const video = webcamRef.current.video;
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         const ctx = canvas.getContext("2d");
-    
-        //좌우반전
+
+        // 좌우반전
         ctx.translate(canvas.width, 0);
         ctx.scale(-1, 1);
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
+
         const imageSrc = canvas.toDataURL("image/png", 1.0);
         setCapturedImages((prev) => [...prev, imageSrc]);
     };
 
-    // const sendImages = async (images) => {
-    //     const payload = {
-    //         images: images,
-    //     };
-        
-    //     try {
-    //         const response = await fetch("http://localhost:8000/photo/save", {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(payload),
-    //         });
-    
-    //         const result = await response.json();
-    //         console.log("Saved paths:", result.saved_paths);
-    //         console.log("Generated prompts:", result.prompts);
-    //         console.log("Song prompt:", result.song_prompt);
-
-    //         const audioBase64 = result.audio_base64;
-
-    //         navigate("/song", { state: { audioBase64 } });
-    //     } catch (error) {
-    //         console.error("이미지 업로드 오류:", error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
     const handleClick = () => {
         if (capturedImages.length < 3) return;
-        navigate("/loading", { state: { capturedImages } });
+        navigate("/shootLoading", { state: { capturedImages } });
     };
 
     return (
         <div style={{ textAlign: "center", padding: "5vw" }}>
             <Camera ref={webcamRef} />
 
+            <div style={{ fontSize: "4vw", marginTop: "6vw", color: "#555" }}>
+                {capturedImages.length} / 3
+            </div>
+
             {countdown !== null ? (
-                <h2 style={{ fontSize: "5vw", margin: "10vw 0" }}>
-                    촬영까지: {countdown}초
-                </h2>
+                <Countdown number={countdown} />
             ) : capturedImages.length < 3 ? (
                 <button
                     onClick={handleStartCapture}
@@ -100,7 +74,7 @@ function Shoot() {
                         border: "none",
                         padding: "1vw 2vw",
                         cursor: "pointer",
-                        marginTop: "10vw",
+                        marginTop: "8vw",
                     }}
                 >
                     사진 촬영
@@ -116,28 +90,12 @@ function Shoot() {
                         border: "none",
                         padding: "1vw 2vw",
                         cursor: "pointer",
-                        marginTop: "10vw",
+                        marginTop: "8vw",
                     }}
                 >
                     촬영 완료
                 </button>
             )}
-
-            <div style={{ display: "flex", gap: "3vw", marginTop: "8vw", justifyContent: "center" }}>
-                {capturedImages.map((img, index) => (
-                    <img
-                        key={index}
-                        src={img}
-                        alt={`사진 ${index + 1}`}
-                        style={{
-                            width: "25vw",
-                            height: "25vw", 
-                            bjectFit: "cover",
-                            borderRadius: "1.5vw"
-                        }}
-                    />
-                ))}
-            </div>
         </div>
     );
 }
