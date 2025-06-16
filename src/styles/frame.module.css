@@ -1,8 +1,8 @@
-.frame-container {
+.frameContainer {
   min-height: 100vh;
   height: 1920px;
   background: url('/src/assets/frame.png') no-repeat center top;
-  background-size: 950px 1038px; /* cover 대신 contain 시도 */ 
+  background-size: 950px 1038px;
   position: relative;
   padding-left: 40px;
   padding-right: 40px;
@@ -10,9 +10,10 @@
   overflow: auto;
 }
 
-.button-grid {
+.buttonGrid {
   position: absolute;
-  top: 37%; /* 필요시 위치 조정 */
+  top: 37%; 
+  /* 필요시 위치 조정 */
   left: 38%;
   transform: translate(-50%, -50%);
   display: grid;
@@ -21,21 +22,21 @@
   gap: 20px;
 }
 
-.card-button {
+.cardButton {
   left: 44.5%;
 }
 
-.touch-button {
+.touchButton {
   top: 42.5%;
 }
 
-.email-button {
+.emailButton {
   left: 44.5%;
   top: 42.5%;
 }
 
 /* 하늘색 화면이 나올 위치와 크기 지정 */
-.frame-screen {
+.frameScreen {
   position: absolute;
   /* === 하늘색 영역의 위치 (예시 값, 실제로는 정확한 좌표를 측정해서 입력!) === */
   /* top: 166px; */
@@ -50,8 +51,3 @@
   overflow: hidden;
   border-radius: 20px; 
 }
-
-/* .frame-screen > * {
-  width: 100%;
-  height: 100%;
-} */
