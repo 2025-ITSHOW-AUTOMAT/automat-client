@@ -1,4 +1,4 @@
-.button-container {
+.buttonContainer {
   width: 90px;
   height: 75px;
   border-radius: 15px;
@@ -17,7 +17,7 @@
     -1px -1px 20px rgba(255, 255, 255, 0.3); 왼쪽 위 빛 반사 */
 }
 
-.button-wrapper {
+.buttonWrapper {
   width: 80px;
   height: 65px;
   left: 5px;
@@ -37,7 +37,7 @@
   position: relative;
 }
 
-.button-top {
+.buttonTop {
   width: 70px;
   height: 50px;
   border-radius: 12px;
@@ -59,13 +59,13 @@
   position: relative;
 }
 
-.button-wrapper:active > .button-top  {
+.buttonWrapper:active > .buttonTop  {
   box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2),
               inset -4px -4px 8px rgba(255, 255, 255, 0.5);
   transform: translateY(5px);
 }
 
-.button-top:active  {
+.buttonTop:active  {
   box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2),
               inset -4px -4px 8px rgba(255, 255, 255, 0.5);
   transform: translateY(5px);

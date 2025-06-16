@@ -1,0 +1,14 @@
+.projectContainer {
+    flex-direction: column;
+    /* gap: 17px; */
+    align-items: center;
+    width: auto;
+    height: auto;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: solid 1px #B2D4DA;
+    padding: 17px 16px;
+    font-size: 11px;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.05);
+}

@@ -1,25 +1,25 @@
 import React from "react";
-import "../styles/frame.module.css";
+import styles from "../styles/frame.module.css";
 import Button from "./button";
 
 const Frame = ({ children }) => {
     return(
-      <div className='frame-container'>
-        <div className='frame-background'>
-            <div className='frame-screen'>
+      <div className={styles.frameContainer}>
+        <div className={styles.frameBackground}>
+            <div className={styles.frameScreen}>
                 {children}
             </div>
         </div>
-        <div className="button-grid home-button">
+        <div className={`${styles.buttonGrid} ${styles.homeButton}`}>
           <Button type="home" />
         </div>
-        <div className="button-grid card-button">
+        <div className={`${styles.buttonGrid} ${styles.cardButton}`}>
           <Button type="card" />
         </div>
-        <div className="button-grid touch-button">
+        <div className={`${styles.buttonGrid} ${styles.touchButton}`}>
           <Button type="touch" />
         </div>
-        <div className="button-grid email-button">
+        <div className={`${styles.buttonGrid} ${styles.emailButton}`}>
           <Button type="email" />
         </div>
       </div>  
