@@ -18,8 +18,12 @@ function SongLoading() {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        prompts: song_prompt,
+                        song_prompt: song_prompt,
                         duration_sec: 45,
+
+                        lora_path: null,
+                        lora_weight: 1.0,
+                        infer_steps: 100,
                     }),
                 });
 
