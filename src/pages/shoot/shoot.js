@@ -62,8 +62,8 @@ function Shoot() {
             </div>
 
             {countdown !== null ? (
-                <Countdown number={countdown} />
-            ) : capturedImages.length < 3 ? (
+            <Countdown number={countdown} />
+        ) : capturedImages.length < 3 ? (
                 <button
                     onClick={handleStartCapture}
                     disabled={isCapturing}
