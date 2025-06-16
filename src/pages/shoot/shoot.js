@@ -32,30 +32,34 @@ function Shoot() {
 
     const capture = () => {
         if (!webcamRef.current) return;
-    
+
         const video = webcamRef.current.video;
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         const ctx = canvas.getContext("2d");
-    
-        //좌우반전
+
+        // 좌우반전
         ctx.translate(canvas.width, 0);
         ctx.scale(-1, 1);
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
+
         const imageSrc = canvas.toDataURL("image/png", 1.0);
         setCapturedImages((prev) => [...prev, imageSrc]);
     };
 
     const handleClick = () => {
         if (capturedImages.length < 3) return;
-        navigate("/loading", { state: { capturedImages } });
+        navigate("/shoot/loading", { state: { capturedImages } });
     };
 
     return (
         <div style={{ textAlign: "center", padding: "5vw" }}>
             <Camera ref={webcamRef} />
+
+            <div style={{ fontSize: "4vw", marginTop: "6vw", color: "#555" }}>
+                {capturedImages.length} / 3
+            </div>
 
             {countdown !== null ? (
             <Countdown number={countdown} />
@@ -70,7 +74,7 @@ function Shoot() {
                         border: "none",
                         padding: "1vw 2vw",
                         cursor: "pointer",
-                        marginTop: "10vw",
+                        marginTop: "8vw",
                     }}
                 >
                     사진 촬영
@@ -86,28 +90,12 @@ function Shoot() {
                         border: "none",
                         padding: "1vw 2vw",
                         cursor: "pointer",
-                        marginTop: "10vw",
+                        marginTop: "8vw",
                     }}
                 >
                     촬영 완료
                 </button>
             )}
-
-            <div style={{ display: "flex", gap: "3vw", marginTop: "8vw", justifyContent: "center" }}>
-                {capturedImages.map((img, index) => (
-                    <img
-                        key={index}
-                        src={img}
-                        alt={`사진 ${index + 1}`}
-                        style={{
-                            width: "25vw",
-                            height: "25vw", 
-                            bjectFit: "cover",
-                            borderRadius: "1.5vw"
-                        }}
-                    />
-                ))}
-            </div>
         </div>
     );
 }
