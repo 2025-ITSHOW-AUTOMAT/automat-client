@@ -50,7 +50,7 @@ function Shoot() {
 
     const handleClick = () => {
         if (capturedImages.length < 3) return;
-        navigate("/shootLoading", { state: { capturedImages } });
+        navigate("/shoot/loading", { state: { capturedImages } });
     };
 
     return (
