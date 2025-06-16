@@ -1,0 +1,72 @@
+.button-container {
+  width: 90px;
+  height: 75px;
+  border-radius: 15px;
+  background: #000;
+  position: absolute;
+  top: 35%; 
+  /* frame-container의 위에서 28px 내려오도록 */
+  left: 30%;
+  transform: translateX(-50%);
+  z-index: 10; 
+  /* frame-container 위에 보이도록 */
+
+  box-shadow:
+    5px 5px 20px rgba(0, 0, 0, 0.6);   
+    /* 오른쪽 아래 그림자
+    -1px -1px 20px rgba(255, 255, 255, 0.3); 왼쪽 위 빛 반사 */
+}
+
+.button-wrapper {
+  width: 80px;
+  height: 65px;
+  left: 5px;
+  border-radius: 10px;
+  background: linear-gradient(
+    145deg,
+    #5c767a 0%,
+    #81a3a8 17%,
+    #d8eef0 63%,
+    #82a2a8 85%,
+    #3c5054 100%
+  );
+  /* box-shadow: 9px 9px 16px #bebebe, -9px -9px 16px #ffffff; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.button-top {
+  width: 70px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(
+    145deg,
+    #5c767a 0%,
+    #81a3a8 17%,
+    #d8eef0 63%,
+    #82a2a8 85%,
+    #3c5054 100%
+  );
+  bottom: 8px;
+  border: 2px solid #B4CAD0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.button-wrapper:active > .button-top  {
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2),
+              inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+  transform: translateY(5px);
+}
+
+.button-top:active  {
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2),
+              inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+  transform: translateY(5px);
+}

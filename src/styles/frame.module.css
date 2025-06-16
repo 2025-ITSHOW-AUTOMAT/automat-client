@@ -1,0 +1,57 @@
+.frame-container {
+  min-height: 100vh;
+  height: 1920px;
+  background: url('/src/assets/frame.png') no-repeat center top;
+  background-size: 950px 1038px; /* cover 대신 contain 시도 */ 
+  position: relative;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 45px;
+  overflow: auto;
+}
+
+.button-grid {
+  position: absolute;
+  top: 37%; /* 필요시 위치 조정 */
+  left: 38%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: repeat(2, 110px);
+  grid-template-rows: repeat(2, 95px);
+  gap: 20px;
+}
+
+.card-button {
+  left: 44.5%;
+}
+
+.touch-button {
+  top: 42.5%;
+}
+
+.email-button {
+  left: 44.5%;
+  top: 42.5%;
+}
+
+/* 하늘색 화면이 나올 위치와 크기 지정 */
+.frame-screen {
+  position: absolute;
+  /* === 하늘색 영역의 위치 (예시 값, 실제로는 정확한 좌표를 측정해서 입력!) === */
+  /* top: 166px; */
+  top: 8.7%;
+  left: 35.1%;
+  /* left: 363px; */
+  width: 572px;
+  height: 378px;
+  
+  background: #D6EDF3; 
+  /* 디버깅용 하늘색 */
+  overflow: hidden;
+  border-radius: 20px; 
+}
+
+/* .frame-screen > * {
+  width: 100%;
+  height: 100%;
+} */
