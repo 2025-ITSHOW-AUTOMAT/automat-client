@@ -2,7 +2,7 @@ import styles from "../../styles/header.module.css";
 import { Clock } from 'lucide-react';
 
 
-const DataRimeDisplay = () => {
+const Hearder = () => {
     const now = new Date();
 
     // 월, 일, 요일
@@ -28,4 +28,4 @@ const DataRimeDisplay = () => {
     );
 };
 
-export default DataRimeDisplay;
+export default Hearder;
