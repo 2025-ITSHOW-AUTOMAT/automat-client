@@ -8,11 +8,11 @@ const PhotoCard = ({ photo = [], translate_prompt = [] }) => {
     }));
 
     const containerStyle = {
-        width: "24.5vw",
+        width: "24vw",
         height: "20vh",
         marginBottom: "3vh",
         backgroundColor: "white",
-        border: "2px solid #B2D4DA",
+        border: "1px solid #B2D4DA",
         borderRadius: "2vh",
         display: "flex",
         flexDirection: "row",
@@ -45,14 +45,14 @@ const PhotoCard = ({ photo = [], translate_prompt = [] }) => {
             position: "relative"
         }}>
             <div style={{
-                height: "90vh"
+                height: "85vh"
             }}>
                 {cards.map((card, index) => (
                     <div
                         key={card.id}
                         style={{
                             position: "sticky",
-                            top: 20,
+                            top: 30,
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
@@ -66,7 +66,7 @@ const PhotoCard = ({ photo = [], translate_prompt = [] }) => {
                             }}
                         >
                             <div style={{
-                                border: "2px solid rgba(178, 212, 218, 0.2)",
+                                border: "1px solid rgba(178, 212, 218, 0.2)",
                                 borderRadius: "1vh",
                                 backgroundColor: "rgba(208, 230, 236, 0.1)",
                                 padding: "1vh",
@@ -75,7 +75,7 @@ const PhotoCard = ({ photo = [], translate_prompt = [] }) => {
                             </div>
                             <div style={{
                                 marginLeft: "1.5vw",
-                                border: "2px solid rgba(178, 212, 218, 0.2)",
+                                border: "1px solid rgba(178, 212, 218, 0.2)",
                                 borderRadius: "1vh",
                                 backgroundColor: "rgba(208, 230, 236, 0.1)",
                                 padding: "1vh",
