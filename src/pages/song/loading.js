@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Frame from "../../components/frame.js";
+import TypingDots from "../../components/typing";
 
 function SongLoading() {
     const location = useLocation();
@@ -14,7 +16,8 @@ function SongLoading() {
 
         const generateSong = async () => {
             try {
-                const songRes = await fetch("http://automat.mirim-it-show.site:8080/song/generate", {
+                // const songRes = await fetch("http://automat.mirim-it-show.site:8080/song/generate", {
+                const songRes = await fetch("http://localhost:8000/song/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -41,9 +44,34 @@ function SongLoading() {
     }, [song_prompt, navigate]);
 
     return (
-        <div style={{ textAlign: "center", padding: "5vw" }}>
-            <h2 style={{ fontSize: "5vw", marginTop: "20vh" }}>노래 생성 중...</h2>
-        </div>
+        <Frame>
+            <div style={{
+                textAlign: "center",
+            }}>
+                <div style={{
+                    width: "26.5vw",
+                    height: "16.5vw",
+                    margin: "auto",
+                    marginTop: "2.5vh",
+                    backgroundColor: "white",
+                    borderRadius: "1vw",
+                    border: "solid #B2D4DA",
+                }}>
+                    <TypingDots
+                        text="음악 생성 중"
+                        interval={400}
+                        maxDots={3}
+                        style={{
+                            fontSize: "1.5vw",
+                            paddingTop: "6.5vw",
+                            color: "#00A4C8",
+                            textAlign: "center",
+                            fontWeight: "600",
+                        }}
+                    />
+                </div>
+            </div>
+        </Frame>
     );
 }
 

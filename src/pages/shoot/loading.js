@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Frame from "../../components/frame.js";
+import TypingDots from "../../components/typing";
 
 function ShootLoading() {
     const location = useLocation();
@@ -14,7 +16,8 @@ function ShootLoading() {
 
         const processImages = async () => {
             try {
-                const response = await fetch("http://automat.mirim-it-show.site:8080/photo/save", {
+                // const response = await fetch("http://automat.mirim-it-show.site:8080/photo/save", {
+                const response = await fetch("http://localhost:8000/photo/save", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ images: capturedImages }),
@@ -44,9 +47,35 @@ function ShootLoading() {
     }, [capturedImages, navigate]);
 
     return (
-        <div style={{ textAlign: "center", padding: "5vw" }}>
-            <h2 style={{ fontSize: "5vw", marginTop: "20vh" }}>프롬프트 생성 중...</h2>
-        </div>
+        
+        <Frame>
+            <div style={{
+                textAlign: "center",
+            }}>
+                <div style={{
+                    width: "26.5vw",
+                    height: "16.5vw",
+                    margin: "auto",
+                    marginTop: "2.5vh",
+                    backgroundColor: "white",
+                    borderRadius: "1vw",
+                    border: "solid #B2D4DA",
+                }}>
+                    <TypingDots
+                        text="프롬프트 생성 중"
+                        interval={400}
+                        maxDots={3}
+                        style={{
+                            fontSize: "1.5vw",
+                            paddingTop: "6.5vw",
+                            color: "#00A4C8",
+                            textAlign: "center",
+                            fontWeight: "600",
+                        }}
+                    />
+                </div>
+            </div>
+        </Frame>
     );
 }
 
