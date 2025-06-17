@@ -27,7 +27,7 @@ function Shoot() {
     useEffect(()=>{
         if(shotStep >= 1 && shotStep <= 3){
             setCountdown(5);
-            let count = 5;
+            let count = 1;
 
             const interval = setInterval(() => {
                 count -= 1;
@@ -84,6 +84,7 @@ function Shoot() {
                             width: "100%",
                             height: "100%",
                             objectFit: "cover",
+                            transform: "scaleX(-1)",
                         }}
                     />
                 )}

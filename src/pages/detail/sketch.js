@@ -20,7 +20,7 @@ function Sketch(){
     }
 
     try {
-      const res = await fetch("http://localhost:8089/emotion/upload", {
+      const res = await fetch("http://automat.mirim-it-show.site:8080/emotion/upload", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

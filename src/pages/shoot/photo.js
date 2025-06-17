@@ -8,7 +8,7 @@ import FooterButton from "../../components/footerButton.js";
 function Photo() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { saved_paths, song_prompt, translate_prompt } = location.state || {};
+    const { saved_paths, song_prompt, translat_prompts } = location.state || {};
 
     const handleNext = () => {
         navigate("/song/loading", { state: { song_prompt, saved_paths } });
@@ -30,13 +30,13 @@ function Photo() {
             <div style={containerStyle}>
                 <PhotoCard
                     photo={saved_paths}
-                    translate_prompt={translate_prompt}
+                    translate_prompt={translat_prompts}
                 />
-          
-                <FooterButton
-                    msg="이 사진들로 노래 만들기"
-                    onClick={handleNext}
-                />
+                <div style={{ width : "100%"}} onClick={handleNext}>
+                    <FooterButton
+                        msg="이 사진들로 노래 만들기"
+                    />
+                </div>
             </div>
         </Frame>
     );

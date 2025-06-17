@@ -16,17 +16,13 @@ function SongLoading() {
 
         const generateSong = async () => {
             try {
-                // const songRes = await fetch("http://automat.mirim-it-show.site:8080/song/generate", {
-                const songRes = await fetch("http://localhost:8000/song/generate", {
+                const songRes = await fetch("http://automat.mirim-it-show.site:8080/song/generate", {
+                // const songRes = await fetch("http://localhost:8000/song/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         song_prompt: song_prompt,
                         duration_sec: 45,
-
-                        lora_path: null,
-                        lora_weight: 1.0,
-                        infer_steps: 100,
                     }),
                 });
 

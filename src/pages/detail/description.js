@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useLocation } from "react-router-dom";
 import Frame from "../../components/frame";
 import { FaPlay } from "react-icons/fa6";
@@ -5,13 +6,37 @@ import styles from '../../styles/description.module.css'
 import AudioSlider from "../../components/audioSlider";
 import FooterButton from "../../components/footerButton";
 import Hearder from "../../components/home/header";
+import axios from 'axios';
+
 
 const Description = () =>{
   const location = useLocation();
   const coverImage = location.state?.coverImage;
-  const coverImagePath = `http://localhost:8089/uploads/coverImage/${coverImage}`
+  const coverImagePath = `http://automat.mirim-it-show.site:8080/uploads/coverImage/${coverImage}`
+
+  const [title, setTitle] = useState('');
+  const [userName, setUserName] = useState('');
+  const [description, setDescription] = useState('');
 
   console.log(coverImagePath)
+
+  const handleSubmit = async () => {
+    const payload = {
+      title: title,
+      user_name: userName,
+      description: description,
+      image_path: coverImagePath,
+      song_path: `http://automat.mirim-it-show.site:8080/uploads/song/곡파일이름.wav`  // 실제 경로로 대체
+    };
+  
+    try {
+      const response = await axios.post('http://automat.mirim-it-show.site:8080/save-info', payload);
+      alert(response.data.message);
+    } catch (error) {
+      console.error("저장 실패:", error);
+      alert("저장 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
 
@@ -48,25 +73,31 @@ const Description = () =>{
             }}>
               <input
                 className={styles.titleinput}
-                placeholder='제목을 정해주세요!'>
-              </input>
+                placeholder='제목을 정해주세요!'
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+
               <input
                 className={styles.nameinput}
-                placeholder='이름을 입력해주세요'>
-              </input>
+                placeholder='이름을 입력해주세요'
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
             </div>
             <AudioSlider/>
             <textarea
               className={styles.descrioptioninput}
-              placeholder='곡에 대해 설명해주세요!'>
-            </textarea>
-
+              placeholder='곡에 대해 설명해주세요!'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </div>
         </div>
         <div style={{
           width: '100%'
         }}>
-          <FooterButton msg='게시판 앨범에 노래 올리기'/>
+          <FooterButton msg='게시판 앨범에 노래 올리기' onClick={handleSubmit}/>
         </div>
       </div>
 

@@ -16,8 +16,8 @@ function ShootLoading() {
 
         const processImages = async () => {
             try {
-                // const response = await fetch("http://automat.mirim-it-show.site:8080/photo/save", {
-                const response = await fetch("http://localhost:8000/photo/save", {
+                const response = await fetch("http://automat.mirim-it-show.site:8080/photo/save", {
+                // const response = await fetch("http://127.0.0.1:8000/uploads/photo/}", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ images: capturedImages }),
@@ -27,12 +27,12 @@ function ShootLoading() {
                 console.log("Saved paths:", result.saved_paths);
                 console.log("Generated prompts:", result.prompts);
                 console.log("Song prompt:", result.song_prompt);
-                console.log("Translate prompt:", result.translate_prompt);
+                console.log("Translate prompt:", result.translat_prompts);
 
                 navigate("/shoot/photo", {
                     state: {
                         saved_paths: result.saved_paths,
-                        translate_prompt: result.translate_prompt,
+                        translat_prompts: result.translat_prompts,
                         song_prompt: result.song_prompt,
                     },
                 });
