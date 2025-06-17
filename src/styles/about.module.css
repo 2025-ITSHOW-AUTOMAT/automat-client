@@ -1,0 +1,129 @@
+.aboutContainer { 
+    border: 1px solid rgba(178, 212, 218, 0.2); 
+    background: linear-gradient( 
+        to right, 
+        rgba(208, 230, 236, 0.1) 10%, 
+        rgba(211, 233, 239, 0.2) 20% 
+    ); 
+    padding: 24px 32px; /* 패딩 복원하고 적절한 크기로 조정 */
+    border-radius: 8px; 
+    margin: 0 16px; /* 카드 간격 조정 */
+    min-width: 350px; /* 최소 너비 설정 */
+    flex-shrink: 0; /* 카드가 줄어들지 않도록 */
+} 
+
+.aboutWrapper { 
+    display: flex; 
+    align-items: center; 
+} 
+
+.titleImage { /* titleImg -> titleImage로 통일 */
+    flex-shrink: 0;
+}
+
+.titleImage > .avatarImage { 
+    width: 48px; /* 아바타 크기 증가 */
+    height: 48px; 
+    border-radius: 8px; /* 둥근 정도 조정 */
+} 
+
+.titleContent { 
+    flex: 1; 
+    margin: 0 16px; /* 마진 증가 */
+} 
+
+.title { 
+    font-size: 18px; /* 폰트 크기 증가 */
+    font-weight: 600; 
+    color: #00A4C8; 
+    font-family: "IBM Plex Mono", monospace; 
+    margin-bottom: 6px; 
+} 
+
+.userName { 
+    font-size: 14px; /* 폰트 크기 증가 */
+    color: rgba(28, 28, 28, 0.8); 
+    font-family: "IBM Plex Mono", monospace; 
+    font-weight: 500; 
+} 
+
+.iconGroup { 
+    display: flex; 
+    gap: 8px; 
+    flex-shrink: 0;
+} 
+
+.sendIcon { 
+    color: #00A4C8; 
+    font-size: 20px; /* 아이콘 크기 증가 */
+} 
+
+.aboutLine { 
+    border: none; 
+    background-color: #D6EDF3; 
+    height: 1px; 
+    margin: 20px 0; /* 마진 추가 */
+} 
+
+.description { 
+    font-family: "IBM Plex Mono", monospace; 
+    font-style: italic;
+    color: rgba(28, 28, 28, 0.65); 
+    font-size: 14px; /* 폰트 크기 명시 */
+    line-height: 1.5; /* 라인 높이 추가 */
+}
+
+/* aboutDock css */
+.aboutDockWrapper { 
+    position: relative; 
+    overflow: hidden; 
+    background-color: #fff; 
+    padding: 30px 20px; /* 패딩 증가 */
+    margin-top: 16px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+} 
+
+.aboutDockScroll { 
+    display: flex; 
+    animation: scrollDock 10s linear infinite; /* 더 빠르게 - 10s에서 6s로 변경 */
+    transition: animation-duration 0.3s ease; 
+    /* 부드러운 전환 효과 */
+}
+
+/* hover 시 애니메이션 속도 느리게 */
+.aboutDockWrapper:hover .aboutDockScroll {
+    animation-duration: 5s linear infinite; 
+    /* hover 시 느리게 */
+}
+
+@keyframes scrollDock { 
+    0% { 
+        transform: translateX(0); 
+    } 
+    100% { 
+        transform: translateX(-364%); 
+    } 
+}
+
+/* 양옆 블러 효과 */
+.aboutDockWrapper::before, 
+.aboutDockWrapper::after { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    width: 60px; /* 블러 영역 확대 */
+    height: 100%; 
+    z-index: 1; 
+    pointer-events: none; 
+} 
+
+.aboutDockWrapper::before { 
+    left: 0; 
+    background: linear-gradient(to right, white 0%, transparent 100%); 
+} 
+
+.aboutDockWrapper::after { 
+    right: 0; 
+    background: linear-gradient(to left, white 0%, transparent 100%); 
+}
