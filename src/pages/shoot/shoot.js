@@ -27,7 +27,7 @@ function Shoot() {
     useEffect(()=>{
         if(shotStep >= 1 && shotStep <= 3){
             setCountdown(5);
-            let count = 1;
+            let count = 5;
 
             const interval = setInterval(() => {
                 count -= 1;
