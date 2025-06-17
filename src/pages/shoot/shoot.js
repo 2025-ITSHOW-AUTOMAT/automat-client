@@ -7,7 +7,7 @@ function Shoot() {
     const webcamRef = useRef(null);
     const navigate = useNavigate();
 
-    const [message, setMessage] = useState('5초 후 사진 촬영이 시작됩니다!');
+    const [message, setMessage] = useState('5초 후 사진 촬영이 시작됩니다! 📸');
     const [countdown, setCountdown] = useState(null);
     const [capturedImages, setCapturedImages] = useState([]);
     const [shotStep, setShotStep] = useState(0);
@@ -17,7 +17,7 @@ function Shoot() {
 
     useEffect(()=>{
         const timer = setTimeout(()=>{
-            setMessage('프롬프트로 사용될 이미지 촬영이 총 3번 진행됩니다!');
+            setMessage('프롬프트로 사용될 이미지 촬영이 총 3번 진행됩니다! 💥');
             setShotStep(1);
         }, 5000);
 
@@ -95,12 +95,13 @@ function Shoot() {
                         left: "20px",
                         width: "532px",
                         textAlign: "center",
-                        fontSize: "13px",
-                        color: "black",
+                        fontSize: "15px",
                         backgroundColor: 'rgba(255,255,255,0.5)',
                         border: 'solid, 1px #B2D4DA',
                         borderRadius: '10px',
-                        padding: '11px 0'
+                        padding: '13px 0',
+                        fontWeight: '600',
+                        color: '#1C1C1C'
                     }}
                 >
                     {message}
@@ -123,7 +124,7 @@ function Shoot() {
                             borderRadius: '50%',
                             textAlign: "center",
                             fontSize: "44px",
-                            fontWeight: "bold",
+                            fontWeight: "700",
                             color: "#00A4C8",
                             backgroundColor: 'rgba(240, 240, 240, 0.5)' 
                         }}

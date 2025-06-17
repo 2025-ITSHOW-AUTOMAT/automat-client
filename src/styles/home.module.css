@@ -12,3 +12,17 @@
     font-size: 11px;
     box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.05);
 }
+
+.container{
+    padding: 20px;
+    background-color: #D6EDF3;
+}
+
+.mainbox{
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 18px 16px;
+}

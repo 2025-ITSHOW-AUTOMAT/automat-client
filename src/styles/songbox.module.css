@@ -14,7 +14,7 @@
   margin-left: auto;
   margin-bottom: 20px;
   width: fit-content;
-  background: linear-gradient(to right, rgba(208, 230, 236, 0.1));
+  background: linear-gradient(to right, rgba(208, 230, 236, 0.1), rgba(211, 233, 239, 0.2));
   flex-direction: row;
   gap: 8px;
   align-items: center;
