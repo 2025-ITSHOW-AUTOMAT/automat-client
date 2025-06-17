@@ -33,7 +33,7 @@ function Sketch(){
     <div style={{
       backgroundColor: '#D6EDF3', display:'flex', alignItems: 'center', flexDirection: 'column',
       padding: '20px 0'}}>
-      <div style={{width:'fit-content',display:'flex', alignItems: 'center', flexDirection: 'column', gap: '10px'}}>
+      <div style={{width:'86%',display:'flex', alignItems: 'center', flexDirection: 'column', gap: '10px'}}>
         <div className={styles.header}>
           표정을 통해 색상을 바꿔 앨범 표지를 디자인 해주세요 🙂
         </div>

@@ -101,7 +101,7 @@ const Canvas = forwardRef((props, ref) => {
       <canvas
         id='cover'
         ref={canvasRef}
-        style={{ width: "280px", aspectRatio: '1/1', border: 'solid 1px rgba(0, 164, 200, 0.1)', borderRadius: '5px'}}
+        style={{ width: "340px", aspectRatio: '1/1', border: 'solid 1px rgba(0, 164, 200, 0.1)', borderRadius: '5px'}}
         onMouseDown={() => setPainting(true)}
         onMouseUp={() => setPainting(false)}
         onMouseMove={e => drawFn(e)}
