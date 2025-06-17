@@ -5,8 +5,10 @@ import Songbox from "../../components/songbox";
 import styles from "../../styles/sketch.module.css"
 import Camera from "../../components/camera";
 import FooterButton from "../../components/footerButton";
+import { useNavigate } from "react-router-dom";
 
 function Sketch(){
+  const navigate = useNavigate();
   const webcamRef = useRef(null);
   const canvasComponentRef = useRef();
 
@@ -18,7 +20,7 @@ function Sketch(){
     }
 
     try {
-      const res = await fetch("http://localhost:8087/emotion/upload", {
+      const res = await fetch("http://localhost:8089/emotion/upload", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -27,7 +29,9 @@ function Sketch(){
       });
 
       const result = await res.json();
-      console.log("업로드 성공:", result);
+      console.log("업로드 성공:", result.filename);
+
+      navigate("/description", { state: { coverImage: result.filename } });
     } catch (err) {
       console.error("업로드 실패", err);
     }
@@ -39,8 +43,8 @@ function Sketch(){
       <Frame children={
         <div style={{
           backgroundColor: '#D6EDF3', display:'flex', alignItems: 'center', flexDirection: 'column',
-          padding: '20px 0'}}>
-          <div style={{width:'86%',display:'flex', alignItems: 'center', flexDirection: 'column', gap: '10px'}}>
+          padding: '20px'}}>
+          <div style={{display:'flex', alignItems: 'center', flexDirection: 'column', gap: '10px'}}>
             <div className={styles.header}>
               표정을 통해 색상을 바꿔 앨범 표지를 디자인 해주세요 🙂
             </div>
@@ -72,8 +76,9 @@ function Sketch(){
               </div>
               <Songbox />
             </div>
-            <FooterButton msg='표지 완성! 노래 정보 수정하러 가기'
-              onClick={handleUpload}/>
+            <div onClick={handleUpload} style={{width: '100%'}}>
+              <FooterButton msg='표지 완성! 노래 정보 수정하러 가기'/>
+            </div>
     
           </div>
         </div>

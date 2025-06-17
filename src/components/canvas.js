@@ -12,14 +12,29 @@ const Canvas = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     getImageBase64: () => {
-      const canvas = canvasRef.current;
-      return canvas.toDataURL("image/png");
+      const originalCanvas = canvasRef.current;
+      const width = originalCanvas.width;
+      const height = originalCanvas.height;
+  
+      const tempCanvas = document.createElement("canvas");
+      tempCanvas.width = width;
+      tempCanvas.height = height;
+  
+      const tempCtx = tempCanvas.getContext("2d");
+  
+      // 배경을 흰색으로
+      tempCtx.fillStyle = "#ffffff";
+      tempCtx.fillRect(0, 0, width, height);
+  
+      tempCtx.drawImage(originalCanvas, 0, 0);
+  
+      return tempCanvas.toDataURL("image/png");
     }
   }));
 
   useEffect(()=>{
 
-    const socket = new WebSocket('ws://localhost:8087/emotion/ws');
+    const socket = new WebSocket('ws://localhost:8089/emotion/ws');
     wsRef.current = socket;
 
     socket.onopen = () => {
