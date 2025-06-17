@@ -7,7 +7,7 @@ function Shoot() {
     const webcamRef = useRef(null);
     const navigate = useNavigate();
 
-    const [message, setMessage] = useState('5초 후 사진 촬영이 시작됩니다! 📸');
+    const [message, setMessage] = useState('5초 후 사진 촬영이 시작됩니다!');
     const [countdown, setCountdown] = useState(null);
     const [capturedImages, setCapturedImages] = useState([]);
     const [shotStep, setShotStep] = useState(0);
@@ -17,7 +17,7 @@ function Shoot() {
 
     useEffect(()=>{
         const timer = setTimeout(()=>{
-            setMessage('프롬프트로 사용될 이미지 촬영이 총 3번 진행됩니다! 💥');
+            setMessage('프롬프트로 사용될 이미지 촬영이 총 3번 진행됩니다!');
             setShotStep(1);
         }, 5000);
 
@@ -26,8 +26,8 @@ function Shoot() {
 
     useEffect(()=>{
         if(shotStep >= 1 && shotStep <= 3){
-            setCountdown(10);
-            let count = 10;
+            setCountdown(5);
+            let count = 5;
 
             const interval = setInterval(() => {
                 count -= 1;
@@ -95,13 +95,12 @@ function Shoot() {
                         left: "20px",
                         width: "532px",
                         textAlign: "center",
-                        fontSize: "15px",
+                        fontSize: "13px",
+                        color: "black",
                         backgroundColor: 'rgba(255,255,255,0.5)',
                         border: 'solid, 1px #B2D4DA',
                         borderRadius: '10px',
-                        padding: '13px 0',
-                        fontWeight: '600',
-                        color: '#1C1C1C'
+                        padding: '11px 0'
                     }}
                 >
                     {message}
@@ -124,7 +123,7 @@ function Shoot() {
                             borderRadius: '50%',
                             textAlign: "center",
                             fontSize: "44px",
-                            fontWeight: "700",
+                            fontWeight: "bold",
                             color: "#00A4C8",
                             backgroundColor: 'rgba(240, 240, 240, 0.5)' 
                         }}

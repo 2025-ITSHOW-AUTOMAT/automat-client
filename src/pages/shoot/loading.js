@@ -62,7 +62,7 @@ function ShootLoading() {
                     border: "solid #B2D4DA",
                 }}>
                     <TypingDots
-                        text="프롬프트 생성 중"
+                        text="사진을 분석하는 중"
                         interval={400}
                         maxDots={3}
                         style={{

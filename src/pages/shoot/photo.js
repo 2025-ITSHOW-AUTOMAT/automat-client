@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import PhotoCard from "../../components/photoCard";
 import Frame from "../../components/frame.js";
 import Header from "../../components/home/header.js";
+import FooterButton from "../../components/footerButton.js";
 
 function Photo() {
     const location = useLocation();
@@ -19,22 +20,8 @@ function Photo() {
         alignItems: "center",
         justifyContent: "center",
         boxSizing: "border-box",
-    };
-
-    const buttonStyle = {
-        marginTop: "2rem",
-        padding: "0.75rem 1.5rem",
-        backgroundColor: "#3b82f6",
-        color: "white",
-        borderRadius: "9999px",
-        fontSize: "1.125rem",
-        border: "none",
-        cursor: "pointer",
-        transition: "background-color 0.3s ease",
-    };
-
-    const buttonHoverStyle = {
-        backgroundColor: "#2563eb",
+        padding: "2vw",
+        paddingTop: "0",
     };
 
     return (
@@ -46,15 +33,10 @@ function Photo() {
                     translate_prompt={translate_prompt}
                 />
           
-          
-                <button
+                <FooterButton
+                    msg="이 사진들로 노래 만들기"
                     onClick={handleNext}
-                    style={buttonStyle}
-                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor)}
-                    onMouseLeave={e => (e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor)}
-                >
-                    다음
-                </button>
+                />
             </div>
         </Frame>
     );
