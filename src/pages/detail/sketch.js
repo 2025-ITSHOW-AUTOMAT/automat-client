@@ -4,6 +4,7 @@ import Canvas from "../../components/canvas";
 import Songbox from "../../components/songbox";
 import styles from "../../styles/sketch.module.css"
 import Camera from "../../components/camera";
+import FooterButton from "../../components/footerButton";
 
 function Sketch(){
   const webcamRef = useRef(null);
@@ -71,9 +72,8 @@ function Sketch(){
               </div>
               <Songbox />
             </div>
-            <div className={styles.footer} onClick={handleUpload}>
-              표지 완성! 노래 정보 수정하러 가기
-            </div>
+            <FooterButton msg='표지 완성! 노래 정보 수정하러 가기'
+              onClick={handleUpload}/>
     
           </div>
         </div>
