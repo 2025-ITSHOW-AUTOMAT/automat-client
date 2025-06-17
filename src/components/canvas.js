@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, forwardRef, useImperativeHandle } f
 import Camera from "./camera";
 
 const Canvas = forwardRef((props, ref) => {
-  const cameraRef = useRef(null);
+  const cameraRef = props.cameraRef;
   const frameRef = useRef(null);
   const canvasRef = useRef(null);
   const wsRef = useRef(null);
@@ -107,7 +107,6 @@ const Canvas = forwardRef((props, ref) => {
         onMouseMove={e => drawFn(e)}
         onMouseLeave={() => setPainting(false)}
       />
-      <Camera ref={cameraRef} />
       <canvas ref={frameRef} width="320" height="240" hidden />
     </div>
   )
