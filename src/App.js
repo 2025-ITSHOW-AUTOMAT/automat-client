@@ -6,6 +6,7 @@ import SongLoading from "./pages/song/loading";
 import Sketch from "./pages/detail/sketch" 
 import Home from "./pages/home";
 import Description from "./pages/detail/description";
+import SongDetail from "./pages/songDetail";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/song/loading" element={<SongLoading />} />
                 <Route path="/sketch" element={<Sketch />} />
                 <Route path="/description" element={<Description />} />
+                <Route path='/song/detail' element={<SongDetail/>}/>
                 <Route path="*" element={<Shoot />} />
             </Routes>
         </BrowserRouter>
