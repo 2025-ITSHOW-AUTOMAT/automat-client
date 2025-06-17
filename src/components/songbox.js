@@ -3,7 +3,7 @@ import styles from '../styles/songbox.module.css'
 import AudioSlider from './audioSlider';
 
 function Songbox(songId){
-  const [title, setTitle] = useState('제목을 지어주세요!');
+  const [title, setTitle] = useState('제목을 정해주세요!');
 
   useEffect(() => {
     if(!songId){

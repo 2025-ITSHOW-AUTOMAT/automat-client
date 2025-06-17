@@ -1,5 +1,5 @@
 .header{
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #1C1C1C;
   width: 100%;
@@ -23,7 +23,7 @@
 }
 
 .sketchbox{
-  padding: 5px;
+  padding: 5px 5px 5px 18px;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -33,12 +33,12 @@
 .colorchip{
   display: flex;
   flex-direction: column;
-  gap: 11px;
-  margin-left: 27px;
+  gap: 16px;
+  margin-left: 40px;
 }
 
 .colorchip>div>div{
-  width: 25px;
+  width: 28px;
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
