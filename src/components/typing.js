@@ -20,6 +20,7 @@ const TypingDots = ({
         <p style={{
             fontFamily: "Pretendard",
             fontSize: "2.5vw",
+            textAlign: "center",
             ...style,
         }}>
             {text}{dots}
