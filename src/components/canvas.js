@@ -34,7 +34,8 @@ const Canvas = forwardRef((props, ref) => {
 
   useEffect(()=>{
 
-    const socket = new WebSocket('ws://automat.mirim-it-show.site:8080/emotion/ws');
+    // const socket = new WebSocket('ws://automat.mirim-it-show.site:8080/emotion/ws');
+    const socket = new WebSocket('ws://127.0.0.1:8000/emotion/ws');
     wsRef.current = socket;
 
     socket.onopen = () => {

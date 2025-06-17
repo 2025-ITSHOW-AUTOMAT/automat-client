@@ -16,8 +16,8 @@ function ShootLoading() {
 
         const processImages = async () => {
             try {
-                const response = await fetch("http://automat.mirim-it-show.site:8080/photo/save", {
-                // const response = await fetch("http://127.0.0.1:8000/uploads/photo/}", {
+                // const response = await fetch("http://automat.mirim-it-show.site:8080/photo/save", {
+                const response = await fetch("http://127.0.0.1:8000/photo/save", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ images: capturedImages }),
@@ -27,12 +27,20 @@ function ShootLoading() {
                 console.log("Saved paths:", result.saved_paths);
                 console.log("Generated prompts:", result.prompts);
                 console.log("Song prompt:", result.song_prompt);
-                console.log("Translate prompt:", result.translat_prompts);
+                console.log("Translate prompt:", result.translate_prompts);
+
+                // const serverBaseUrl = "http://automat.mirim-it-show.site:8080";
+                const serverBaseUrl = "http://localhost:8000";
+
+                const imageUrls = result.saved_paths.map((path) => {
+                    const cleanPath = path.replace("./", "/");
+                    return `${serverBaseUrl}${cleanPath}`;
+                });
 
                 navigate("/shoot/photo", {
                     state: {
-                        saved_paths: result.saved_paths,
-                        translat_prompts: result.translat_prompts,
+                        saved_paths: imageUrls,
+                        translate_prompts: result.translate_prompts,
                         song_prompt: result.song_prompt,
                     },
                 });

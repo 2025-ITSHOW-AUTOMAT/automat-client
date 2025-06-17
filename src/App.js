@@ -7,6 +7,7 @@ import Sketch from "./pages/detail/sketch"
 import Home from "./pages/home";
 import Description from "./pages/detail/description";
 import SongDetail from "./pages/songDetail";
+import Finish from "./pages/finish";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/sketch" element={<Sketch />} />
                 <Route path="/description" element={<Description />} />
                 <Route path='/song/detail' element={<SongDetail/>}/>
+                <Route path='/finish' element={<Finish/>}/>
                 <Route path="*" element={<Shoot />} />
             </Routes>
         </BrowserRouter>

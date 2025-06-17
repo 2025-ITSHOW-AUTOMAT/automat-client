@@ -16,8 +16,8 @@ function SongLoading() {
 
         const generateSong = async () => {
             try {
-                const songRes = await fetch("http://automat.mirim-it-show.site:8080/song/generate", {
-                // const songRes = await fetch("http://localhost:8000/song/generate", {
+                // const songRes = await fetch("http://automat.mirim-it-show.site:8080/song/generate", {
+                const songRes = await fetch("http://127.0.0.1:8000/song/generate", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -28,8 +28,9 @@ function SongLoading() {
 
                 const songResult = await songRes.json();
                 const audioBase64 = songResult.audio_base64;
+                const filename = songResult.filename;
 
-                navigate("/sketch", { state: { audioBase64 } });
+                navigate("/sketch", { state: { audioBase64, filename } });
             } catch (error) {
                 console.error("노래 생성 중 오류 발생:", error);
                 navigate("/shoot");

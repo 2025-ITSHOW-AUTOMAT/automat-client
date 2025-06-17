@@ -1,16 +1,19 @@
 import Frame from "../../components/frame";
+import { useLocation, useNavigate } from "react-router-dom";
 import React, { useRef } from "react";
 import Canvas from "../../components/canvas";
 import Songbox from "../../components/songbox";
 import styles from "../../styles/sketch.module.css"
 import Camera from "../../components/camera";
 import FooterButton from "../../components/footerButton";
-import { useNavigate } from "react-router-dom";
 
 function Sketch(){
   const navigate = useNavigate();
   const webcamRef = useRef(null);
   const canvasComponentRef = useRef();
+  const location = useLocation();
+  const filename = location.state?.filename;
+
 
   const handleUpload = async () => {
     const imageData = canvasComponentRef.current?.getImageBase64();
@@ -20,7 +23,8 @@ function Sketch(){
     }
 
     try {
-      const res = await fetch("http://automat.mirim-it-show.site:8080/emotion/upload", {
+      // const res = await fetch("http://automat.mirim-it-show.site:8080/emotion/upload", {
+        const res = await fetch("http://127.0.0.1:8000/emotion/upload", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -31,7 +35,7 @@ function Sketch(){
       const result = await res.json();
       console.log("업로드 성공:", result.filename);
 
-      navigate("/description", { state: { coverImage: result.filename } });
+      navigate("/description", { state: { coverImage: result.filename, songPath: filename } });
     } catch (err) {
       console.error("업로드 실패", err);
     }
