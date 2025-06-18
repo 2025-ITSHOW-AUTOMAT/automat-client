@@ -19,7 +19,7 @@ const Dock = () => {
     { src: postgreIcon, alt: 'Postgre' },
     { src: pythonIcon, alt: 'Python' },
     { src: huggingFaceIcon, alt: 'HuggingFace' },
-    // { src: runpodIcon, alt: 'Runpod' },
+    { src: runpodIcon, alt: 'Runpod' },
     { src: awsIcon, alt: 'Aws' },
   ];
 
