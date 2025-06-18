@@ -47,12 +47,17 @@ const Frame = ({ children }) => {
   }, [location]);
 
   const handleScrollDown = () => {
-    const target = frameScreenRef.current?.querySelector('.project-section');
-    if (target && frameScreenRef.current) {
-      const targetTop = target.offsetTop;
-      frameScreenRef.current.scrollTo({ top: targetTop, behavior: 'smooth' });
+    if (frameScreenRef.current) {
+      const scrollHeight = frameScreenRef.current.scrollHeight;
+      const clientHeight = frameScreenRef.current.clientHeight;
+  
+      frameScreenRef.current.scrollTo({
+        top: scrollHeight - clientHeight,
+        behavior: 'smooth'
+      });
     }
   };
+  
 
   return (
     <div className={styles.frameContainer}>
