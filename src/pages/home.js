@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import MainButton from "../components/MainButton";
-import Frame from "../components/frame"
+import Frame from "../components/frame";
 import Dock from "../components/home/dock";
-import Header from "../components/home/header"
+import Header from "../components/home/header";
 import Project from "../components/project";
 import { Send, Users, Globe, Share2 } from "lucide-react";
 import AboutDock from "../components/home/aboutDock";
@@ -16,60 +16,46 @@ import SubinImg from "../assets/memoji/subin.png";
 import JiminImg from "../assets/memoji/jimin.png";
 
 const Home = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (window.location.hash === "#about") {
-          const target = document.getElementById('about-section');
-          if (target) {
-            // 약간의 delay 주면 더 부드러움
-            setTimeout(() => {
-              target.scrollIntoView({ behavior: 'smooth' });
-            }, 10);
-          }
-        }
-      }, []);
-      
-    return (
-        <Frame children={
-            <div className={styles.container}>
-                <Header />
-                <div className={styles.mainbox}>
-                    <MainButton
-                        msg='앨범 커스텀하러 가기'
-                        submsg ='AI를 활용해 나만의 앨범 만들기'
-                        onClick={() => navigate('/shoot')}
-                    />
-                        
-                    <MainButton
-                        msg='다른 앨범 구경하기'
-                        submsg ='다양한 앨범 구경하러 가기'
-                        onClick={() => navigate('/albums')}
-                    />
-                </div>
-                <div className={styles.musicbox}>
-                    <MusicPlayerProvider>
-                        <div className="project-section" style={{ marginTop: '30px' }}>
-                            <Project allowUpRight={true} limit={5}/>
-                        </div>
-                    </MusicPlayerProvider>
-                </div>
-                
-                <Dock />
-                <div className={styles.aboutContainer} id='about-section'>
-                <AboutDock 
-                aboutItems={[
-                    { image: JihyunImg, userName: '백지현', title: 'FullStack Developer', description: 'Desc1', icons: [Send] },
-                    { image: HyojuImg, userName: '안효주', title: 'FullStack Developer', description: 'Desc2', icons: [Users] },
-                    { image: SubinImg, userName: '조수빈', title: 'FullStack Developer', description: 'Desc3', icons: [Globe] },
-                    { image: JiminImg, userName: '하지민', title: 'Designer', description: 'Desc3', icons: [Share2] }
-                    ]}
-                />
-            </div>
+  return (
+    <Frame children={
+      <div className={styles.container}>
+        <Header />
+        <div className={styles.mainbox}>
+          <MainButton
+            msg='앨범 커스텀하러 가기'
+            submsg='AI를 활용해 나만의 앨범 만들기'
+            onClick={() => navigate('/shoot')}
+          />
+          <MainButton
+            msg='다른 앨범 구경하기'
+            submsg='다양한 앨범 구경하러 가기'
+            onClick={() => navigate('/albums')}
+          />
         </div>
-        }>
-        </Frame>
-    )    
-}
+        <div className={styles.musicbox}>
+          <MusicPlayerProvider>
+            <div className="project-section" style={{ marginTop: '30px' }}>
+              <Project allowUpRight={true} limit={5} />
+            </div>
+          </MusicPlayerProvider>
+        </div>
+        <Dock />
+        <div className={styles.aboutContainer} id='about'>
+          <AboutDock
+            aboutItems={[
+              { image: JihyunImg, userName: '백지현', title: 'FullStack Developer', description: 'Desc1', icons: [Send] },
+              { image: HyojuImg, userName: '안효주', title: 'FullStack Developer', description: 'Desc2', icons: [Users] },
+              { image: SubinImg, userName: '조수빈', title: 'FullStack Developer', description: 'Desc3', icons: [Globe] },
+              { image: JiminImg, userName: '하지민', title: 'Designer', description: 'Desc3', icons: [Share2] }
+            ]}
+          />
+        </div>
+      </div>
+    }>
+    </Frame>
+  )
+};
 
 export default Home;
