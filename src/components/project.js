@@ -14,10 +14,10 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/album');
+        const response = await axios.get(`http://${process.env.REACT_APP_SERVER_URL}/album`);
         const processedAlbums = response.data.map(album => ({
           ...album,
-          music_url: `http://127.0.0.1:8000/${album.song_path}`
+          music_url: `http://${process.env.REACT_APP_SERVER_URL}/${album.song_path}`
         }));
         setAlbums(response.data);
       } catch (err) {

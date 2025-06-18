@@ -6,7 +6,7 @@ function Player({ albumId }) {
 
   useEffect(() => {
     if (albumId) {
-      fetch(`http://localhost:8000/album/${albumId}`)
+      fetch(`http://${process.env.REACT_APP_SERVER_URL}/album/${albumId}`)
         .then(res => res.json())
         .then(data => {
           setSongUrl(data.song_path); // FastAPI에서 반환하는 song_path
