@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-
+import React, { useEffect, useState, useRef } from 'react'
 
 function formatTime(seconds) {
   if (isNaN(seconds)) return '0:00';
@@ -8,21 +7,41 @@ function formatTime(seconds) {
   return `${mins}:${secs}`;
 }
 
-
 // 음악 play 위한 api 연결 필요
-function AudioSlider({songId}){
+function AudioSlider({ songUrl }){
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const audioRef = useRef(null);
+  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   useEffect(() => {
-    if (!songId) {
-      setDuration(0);
-      return;
+    if (songUrl) {
+      const audio = new Audio(songUrl);
+      audioRef.current = audio;
+
+      audio.addEventListener('loadedmetadata', () => {
+        setDuration(audio.duration);
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        setCurrentTime(audio.currentTime);
+      });
+
+      audio.play();
+
+      return () => {
+        audio.pause();
+        audio.src = '';
+      };
     }
-  }, [songId]);
+  }, [songUrl]);
 
   const handleChange = (e) => {
-    setCurrentTime(Number(e.target.value));
+    const value = Number(e.target.value);
+    setCurrentTime(value);
+    if (audioRef.current) {
+      audioRef.current.currentTime = value;
+    }
   };
 
   return (
@@ -34,6 +53,9 @@ function AudioSlider({songId}){
         value={currentTime}
         onChange={handleChange}
         className="audio-slider"
+        style={{
+          background: `linear-gradient(to right, #06A6C9 ${progressPercent}%, #aaaaaa ${progressPercent}%)`
+        }}
       />
       <style>
       {`
