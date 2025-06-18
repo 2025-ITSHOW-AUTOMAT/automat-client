@@ -29,7 +29,7 @@ function ShootLoading() {
                 console.log("Song prompt:", result.song_prompt);
                 console.log("Translate prompt:", result.translate_prompts);
 
-                // const serverBaseUrl = "http://automat.mirim-it-show.site:8080";
+                // const serverBaseUrl = "http://localhost:8080";
                 const serverBaseUrl = "http://localhost:8000";
 
                 const imageUrls = result.saved_paths.map((path) => {

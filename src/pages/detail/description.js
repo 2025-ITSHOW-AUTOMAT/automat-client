@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Frame from "../../components/frame";
 import { FaPlay } from "react-icons/fa6";
 import styles from '../../styles/description.module.css'
@@ -10,6 +10,7 @@ import axios from 'axios';
 
 
 const Description = () =>{
+  const navigate = useNavigate();
   const location = useLocation();
   const coverImage = location.state?.coverImage;
   // const coverImagePath = `http://automat.mirim-it-show.site:8080/uploads/coverImage/${coverImage}`
@@ -42,6 +43,7 @@ const Description = () =>{
     } catch (error) {
       console.error("저장 실패:", error);
       alert("저장 중 오류가 발생했습니다.");
+      navigate('/finish')
     }
   };
 
@@ -101,10 +103,12 @@ const Description = () =>{
             />
           </div>
         </div>
-        <div style={{
-          width: '100%'
+        <div
+          onClick={handleSubmit}
+          style={{
+            width: '100%'
         }}>
-          <FooterButton msg='게시판 앨범에 노래 올리기' onClick={handleSubmit}/>
+          <FooterButton msg='게시판 앨범에 노래 올리기'/>
         </div>
       </div>
 
