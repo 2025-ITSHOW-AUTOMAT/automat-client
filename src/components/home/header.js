@@ -18,7 +18,7 @@ const Hearder = () => {
         <div className={styles.datetimeContainer}>
             <span className={styles.status}>
                 <span className={styles.statusIndicator}></span>
-                VISION TO SOUND. READY.
+                VISION TO SOUND. READY
             </span>
             <span className={styles.time}>
                 <Clock size={16} style={{ marginRight: '4px', verticalAlign: 'middle', color: '#00A4C8' }} />
