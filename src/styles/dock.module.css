@@ -12,7 +12,7 @@
 
 .dockScroll {
     display: flex;
-    animation: scrollDock 4s linear infinite;
+    animation: scrollDock 10s linear infinite;
 }
   
 .dockItem {
@@ -35,7 +35,7 @@
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-33.33%);
+        transform: translateX(-50%);
     }
 }
 

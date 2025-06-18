@@ -26,3 +26,12 @@
     background-color: white;
     padding: 18px 16px;
 }
+.musicbox {
+    display: flex;
+    flex-direction: column;
+    /* gap: 17px; */
+    margin-top: 16px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 0 18px 0 18px;
+}

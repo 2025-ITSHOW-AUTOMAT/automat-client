@@ -4,7 +4,9 @@ const About = ({ image, userName, title, description, icons = [] }) => {
     return (
         <div className={styles.aboutContainer}>
             <div className={styles.aboutWrapper}>
-                <div className={styles.titleImage}></div>
+                <div className={styles.titleImage}>
+                    {image && <img src={image} alt={userName} className={styles.image} />}
+                </div>
                 <div className={styles.titleContent}>
                     <div className={styles.title}>{title}</div>
                     <div className={styles.userName}>{userName}</div>    
