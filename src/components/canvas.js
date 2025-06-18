@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect, forwardRef, useImperativeHandle } from "react";
-import Camera from "./camera";
 
 const Canvas = forwardRef((props, ref) => {
   const cameraRef = props.cameraRef;
@@ -34,8 +33,7 @@ const Canvas = forwardRef((props, ref) => {
 
   useEffect(()=>{
 
-    // const socket = new WebSocket('ws://automat.mirim-it-show.site:8080/emotion/ws');
-    const socket = new WebSocket('ws://127.0.0.1:8000/emotion/ws');
+    const socket = new WebSocket(`ws://${process.env.SERVER_URL}/emotion/ws`);
     wsRef.current = socket;
 
     socket.onopen = () => {

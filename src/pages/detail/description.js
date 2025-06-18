@@ -13,11 +13,9 @@ const Description = () =>{
   const navigate = useNavigate();
   const location = useLocation();
   const coverImage = location.state?.coverImage;
-  // const coverImagePath = `http://automat.mirim-it-show.site:8080/uploads/coverImage/${coverImage}`
-  const coverImagePath = `http://127.0.0.1:8000/uploads/coverImage/${coverImage}`
+  const coverImagePath = `http://${process.env.REACT_APP_SERVER_URL}/uploads/coverImage/${coverImage}`
   const songPath = location.state?.songPath;
-  // const songUrl = `http://automat.mirim-it-show.site:8080/uploads/song/${songPath}`;
-  const songUrl = `http://127.0.0.1:8000/uploads/song/${songPath}`;
+  const songUrl = `http://${process.env.REACT_APP_SERVER_URL}/uploads/song/${songPath}`;
 
 
   const [title, setTitle] = useState('');
@@ -32,12 +30,11 @@ const Description = () =>{
       user_name: userName,
       description: description,
       image_path: coverImagePath,
-      song_path: songUrl  // 실제 경로로 대체
+      song_path: songUrl
     };
   
     try {
-      // const response = await axios.post('http://automat.mirim-it-show.site:8080/save-info', payload);
-      const response = await axios.post('http://127.0.0.1:8000/album/save/info', payload);
+      const response = await axios.post(`http://${process.env.REACT_APP_SERVER_URL}/album/save/info`, payload);
       alert(response.data.message);
       navigate('/finish')
     } catch (error) {

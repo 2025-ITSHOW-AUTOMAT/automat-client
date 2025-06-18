@@ -16,8 +16,7 @@ function ShootLoading() {
 
         const processImages = async () => {
             try {
-                // const response = await fetch("http://automat.mirim-it-show.site:8080/photo/save", {
-                const response = await fetch("http://127.0.0.1:8000/photo/save", {
+                const response = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/photo/save`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ images: capturedImages }),
@@ -29,8 +28,7 @@ function ShootLoading() {
                 console.log("Song prompt:", result.song_prompt);
                 console.log("Translate prompt:", result.translate_prompts);
 
-                // const serverBaseUrl = "http://localhost:8080";
-                const serverBaseUrl = "http://localhost:8000";
+                const serverBaseUrl = `http://${process.env.REACT_APP_SERVER_URL}`;
 
                 const imageUrls = result.saved_paths.map((path) => {
                     const cleanPath = path.replace("./", "/");
