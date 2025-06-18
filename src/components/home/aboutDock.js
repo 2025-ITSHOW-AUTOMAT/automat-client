@@ -2,7 +2,7 @@ import About from './aboutItem';
 import styles from '../../styles/about.module.css';
 
 const AboutDock = ({ aboutItems = [] }) => {
-    const allItems = [...aboutItems, ...aboutItems, ...aboutItems];
+    const allItems = [...aboutItems, ...aboutItems];
 
     return (
         <div className={styles.aboutDockWrapper}>

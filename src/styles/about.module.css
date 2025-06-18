@@ -5,11 +5,11 @@
         rgba(208, 230, 236, 0.1) 10%, 
         rgba(211, 233, 239, 0.2) 20% 
     ); 
-    padding: 24px 32px; /* 패딩 복원하고 적절한 크기로 조정 */
+    padding: 24px 32px; 
     border-radius: 8px; 
-    margin: 0 16px; /* 카드 간격 조정 */
-    min-width: 350px; /* 최소 너비 설정 */
-    flex-shrink: 0; /* 카드가 줄어들지 않도록 */
+    margin: 0 16px; 
+    min-width: 350px; 
+    flex-shrink: 0; 
 } 
 
 .aboutWrapper { 
@@ -17,8 +17,11 @@
     align-items: center; 
 } 
 
-.titleImage { /* titleImg -> titleImage로 통일 */
-    flex-shrink: 0;
+.image {
+    width: 50px;
+    height: 50px;
+    background-color: #00A4C8;
+    border-radius: 4px;
 }
 
 .titleImage > .avatarImage { 
@@ -86,15 +89,16 @@
 
 .aboutDockScroll { 
     display: flex; 
-    animation: scrollDock 10s linear infinite; /* 더 빠르게 - 10s에서 6s로 변경 */
-    transition: animation-duration 0.3s ease; 
+    animation: scrollDock 15s linear infinite; /* 더 빠르게 - 10s에서 6s로 변경 */
+    will-change: transform;
+    /* transition: animation-duration 0.2s ease;  */
     /* 부드러운 전환 효과 */
 }
 
-/* hover 시 애니메이션 속도 느리게 */
+/* hover 시 애니메이션 느리게 */
 .aboutDockWrapper:hover .aboutDockScroll {
-    animation-duration: 5s linear infinite; 
-    /* hover 시 느리게 */
+    /* animation-play-state: paused; */
+    animation-duration: 15s linear infinite;
 }
 
 @keyframes scrollDock { 
@@ -102,7 +106,7 @@
         transform: translateX(0); 
     } 
     100% { 
-        transform: translateX(-364%); 
+        transform: translateX(-365%); 
     } 
 }
 
