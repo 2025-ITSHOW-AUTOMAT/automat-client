@@ -4,6 +4,10 @@ import framerIcon from '../../assets/framer.png';
 import fastapiIcon from '../../assets/fastapi.png';
 import reactIcon from '../../assets/react.png';
 import postgreIcon from '../../assets/postgresql.png';
+import pythonIcon from '../../assets/python.png';
+import huggingFaceIcon from '../../assets/huggingFace.png';
+import runpodIcon from '../../assets/runpod.png';
+import awsIcon from '../../assets/aws.png';
 
 import styles from '../../styles/dock.module.css';
 
@@ -13,9 +17,13 @@ const Dock = () => {
     { src: fastapiIcon, alt: 'Fastapi' },
     { src: reactIcon, alt: 'React' },
     { src: postgreIcon, alt: 'Postgre' },
+    { src: pythonIcon, alt: 'Python' },
+    { src: huggingFaceIcon, alt: 'HuggingFace' },
+    // { src: runpodIcon, alt: 'Runpod' },
+    { src: awsIcon, alt: 'Aws' },
   ];
 
-  const allItems = [...items, ...items, ...items];
+  const allItems = [...items, ...items];
 
   return (
     <div className={styles.dockWrapper}>
