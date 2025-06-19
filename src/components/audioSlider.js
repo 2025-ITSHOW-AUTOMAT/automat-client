@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react';
 
 function formatTime(seconds) {
   if (isNaN(seconds)) return '0:00';
@@ -7,42 +7,52 @@ function formatTime(seconds) {
   return `${mins}:${secs}`;
 }
 
-// 음악 play 위한 api 연결 필요
-function AudioSlider({ songUrl }){
+function AudioSlider({ songUrl, onDurationLoad }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
-  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   useEffect(() => {
-    if (songUrl) {
-      const audio = new Audio(songUrl);
-      audioRef.current = audio;
+    console.log("✅ AudioSlider에 전달된 songUrl:", songUrl); 
 
-      audio.addEventListener('loadedmetadata', () => {
-        setDuration(audio.duration);
-      });
+    if (!songUrl) return;
 
-      audio.addEventListener('timeupdate', () => {
-        setCurrentTime(audio.currentTime);
-      });
+    const audio = new Audio(songUrl);
+    audioRef.current = audio;
 
-      audio.play();
+    const handleLoadedMetadata = () => {
+      setDuration(audio.duration);
+      if (onDurationLoad) {
+        onDurationLoad(audio.duration);
+      }
+    };
 
-      return () => {
-        audio.pause();
-        audio.src = '';
-      };
-    }
+    const handleTimeUpdate = () => {
+      setCurrentTime(audio.currentTime);
+    };
+
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+    audio.addEventListener('timeupdate', handleTimeUpdate);
+
+    audio.play();
+
+    return () => {
+      audio.pause();
+      audio.src = '';
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+    };
   }, [songUrl]);
 
   const handleChange = (e) => {
     const value = Number(e.target.value);
-    setCurrentTime(value);
     if (audioRef.current) {
       audioRef.current.currentTime = value;
     }
+    setCurrentTime(value);
   };
+
+  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
     <div style={{ width: '97%', margin: '0 auto' }}>
@@ -58,51 +68,45 @@ function AudioSlider({ songUrl }){
         }}
       />
       <style>
-      {`
-      .audio-slider {
-        width: 100%;
-        -webkit-appearance: none;
-        outline: none;
-      }
+        {`
+        .audio-slider {
+          width: 100%;
+          -webkit-appearance: none;
+          outline: none;
+        }
 
-      /* 트랙 */
-      .audio-slider::-webkit-slider-runnable-track {
-        height: 2px;
-        background: #aaaaaa;
-      }
+        .audio-slider::-webkit-slider-runnable-track {
+          height: 2px;
+          background: #aaaaaa;
+        }
 
-      /* 손잡이 */
-      .audio-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 12px;
-        height: 12px;
-        background: #06A6C9;
-        border-radius: 50%;
-        cursor: pointer;
-        margin-top: -5px;
-        border: none;
-      }
-      `}
+        .audio-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 12px;
+          height: 12px;
+          background: #06A6C9;
+          border-radius: 50%;
+          cursor: pointer;
+          margin-top: -5px;
+          border: none;
+        }
+        `}
       </style>
-      
+
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
         marginTop: '10px',
-        fontSize:'12px',
+        fontSize: '12px',
         color: '#aaaaaa',
         fontWeight: 600
       }}>
-        <span style={{marginLeft: '4px'}}>
-          {formatTime(currentTime)}
-        </span>
-        <span style={{marginRight: '4px'}}>
-          {formatTime(duration)}
-        </span>
+        <span style={{ marginLeft: '4px' }}>{formatTime(currentTime)}</span>
+        <span style={{ marginRight: '4px' }}>{formatTime(duration)}</span>
       </div>
     </div>
   );
-};
+}
 
 export default AudioSlider;

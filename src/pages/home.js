@@ -45,10 +45,10 @@ const Home = () => {
         <div className={styles.aboutContainer} id='about'>
           <AboutDock
             aboutItems={[
-              { image: JihyunImg, userName: '백지현', title: 'FullStack Developer', description: 'Desc1', icons: [Send] },
-              { image: HyojuImg, userName: '안효주', title: 'FullStack Developer', description: 'Desc2', icons: [Users] },
-              { image: SubinImg, userName: '조수빈', title: 'FullStack Developer', description: 'Desc3', icons: [Globe] },
-              { image: JiminImg, userName: '하지민', title: 'Designer', description: 'Desc3', icons: [Share2] }
+              { image: JihyunImg, userName: '백지현', title: 'FullStack Developer', description: '안녕하세요~ 개발자 백지현입니다! Automat 재미있게 즐겨주세요!', icons: [Send] },
+              { image: HyojuImg, userName: '안효주', title: 'FullStack Developer', description: '안녕하세요~ 개발자 안효주입니다! Automat 재미있게 즐겨주세요!', icons: [Users] },
+              { image: SubinImg, userName: '조수빈', title: 'FullStack Developer', description: '안녕하세요~ 개발자 조수빈입니다! Automat 재미있게 즐겨주세요!', icons: [Globe] },
+              { image: JiminImg, userName: '하지민', title: 'Designer', description: '안녕하세요~ 디자이너 하지민입니다! Automat 재미있게 즐겨주세요!', icons: [Share2] }
             ]}
           />
         </div>
