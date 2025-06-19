@@ -7,6 +7,7 @@ function SongLoading() {
     const location = useLocation();
     const navigate = useNavigate();
     const song_prompt = location.state?.song_prompt;
+    const rawPrompt = location.state?.song_prompt;
 
     useEffect(() => {
         if (!song_prompt) {
@@ -14,29 +15,35 @@ function SongLoading() {
             return;
         }
 
+        const prompt = Array.isArray(rawPrompt) ? rawPrompt.join(" ") : rawPrompt;
+
         const generateSong = async () => {
             try {
-                const songRes = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/song/generate`, {
+                const songRes = await fetch(`https://${process.env.REACT_APP_RUNPOD_URL}/song/generate`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        song_prompt: song_prompt,
+                        song_prompt: prompt,
                         duration_sec: 45,
-                        lora_path: "",
+                        lora_path: null,
                         lora_weight: 1.0,
                         infer_steps: 100
                     }),
-                    
                 });
 
                 const songResult = await songRes.json();
+
+                if (!songRes.ok) {
+                    throw new Error(songResult.detail || "곡 생성 실패");
+                }
+
                 const songUrl = songResult.song_url;
                 const filename = songResult.filename;
 
                 navigate("/sketch", { state: { songUrl, filename } });
             } catch (error) {
                 console.error("노래 생성 중 오류 발생:", error);
-                navigate("/shoot");
+                navigate("/");
             }
         };
 

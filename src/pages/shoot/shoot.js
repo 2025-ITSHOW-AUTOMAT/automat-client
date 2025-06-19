@@ -35,7 +35,6 @@ function Shoot() {
                 if (count === 0) {
                     clearInterval(interval);
                     const image = capture();
-                    console.log(image);
 
                     setPreviewImage(image);
                     setShowPreview(true);
