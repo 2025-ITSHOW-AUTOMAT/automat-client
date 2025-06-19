@@ -16,7 +16,7 @@ function ShootLoading() {
 
         const processImages = async () => {
             try {
-                const response = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/photo/save`, {
+                const response = await fetch(`https://${process.env.REACT_APP_SERVER_URL}/photo/save`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ images: capturedImages }),
@@ -28,7 +28,7 @@ function ShootLoading() {
                 console.log("Song prompt:", result.song_prompt);
                 console.log("Translate prompt:", result.translate_prompts);
 
-                const serverBaseUrl = `http://${process.env.REACT_APP_SERVER_URL}`;
+                const serverBaseUrl = `https://${process.env.REACT_APP_SERVER_URL}`;
 
                 const imageUrls = result.saved_paths.map((path) => {
                     const cleanPath = path.replace("./", "/");

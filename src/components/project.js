@@ -15,7 +15,7 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
-        const response = await axios.get(`http://${process.env.REACT_APP_SERVER_URL}/album`);
+        const response = await axios.get(`https://${process.env.REACT_APP_SERVER_URL}/album`);
         
         const processedAlbums = response.data.map(album => {
           let url = album.song_path;
@@ -25,7 +25,7 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
             // 절대 URL이면 그대로 사용
           } else {
             // 상대 경로면 REACT_APP_SERVER_URL을 붙여줌
-            url = `http://${process.env.REACT_APP_SERVER_URL}${url.startsWith('/') ? '' : '/'}${url}`;
+            url = `https://${process.env.REACT_APP_SERVER_URL}${url.startsWith('/') ? '' : '/'}${url}`;
           }
         
           return {
@@ -36,7 +36,7 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
                 
         // const processedAlbums = response.data.map(album => ({
         //   ...album,
-        //   music_url: `http://${process.env.REACT_APP_SERVER_URL}/${album.song_path}`
+        //   music_url: `https://${process.env.REACT_APP_SERVER_URL}/${album.song_path}`
         // }));
         setAlbums(processedAlbums);
       } catch (err) {

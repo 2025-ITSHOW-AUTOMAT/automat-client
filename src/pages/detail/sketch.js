@@ -23,7 +23,7 @@ function Sketch(){
     }
 
     try {
-        const res = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/emotion/upload`, {
+        const res = await fetch(`https://${process.env.REACT_APP_SERVER_URL}/emotion/upload`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

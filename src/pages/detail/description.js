@@ -13,9 +13,9 @@ const Description = () =>{
   const navigate = useNavigate();
   const location = useLocation();
   const coverImage = location.state?.coverImage;
-  const coverImagePath = `http://${process.env.REACT_APP_SERVER_URL}/uploads/coverImage/${coverImage}`
+  const coverImagePath = `https://${process.env.REACT_APP_SERVER_URL}/uploads/coverImage/${coverImage}`
   const songPath = location.state?.songPath;
-  const songUrl = `http://${process.env.REACT_APP_SERVER_URL}/uploads/song/${songPath}`;
+  const songUrl = `https://${process.env.REACT_APP_SERVER_URL}/uploads/song/${songPath}`;
 
 
   const [title, setTitle] = useState('');
@@ -34,7 +34,7 @@ const Description = () =>{
     };
   
     try {
-      const response = await axios.post(`http://${process.env.REACT_APP_SERVER_URL}/album/save/info`, payload);
+      const response = await axios.post(`https://${process.env.REACT_APP_SERVER_URL}/album/save/info`, payload);
       alert(response.data.message);
       navigate('/finish')
     } catch (error) {
