@@ -15,14 +15,20 @@ function SaveLoading({ capturedImages, onSaveComplete }) {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ images: capturedImages }),
                 });
+                if (!response.ok) {
+                    const text = await response.text();
+                    console.error("서버 응답 오류:", response.status, text);
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
                 const result = await response.json();
                 const serverBaseUrl = `https://${process.env.REACT_APP_SERVER_URL}`;
                 const imageUrls = result.saved_paths.map(path => `${serverBaseUrl}${path.replace("./", "/")}`);
-                
+
                 console.log("Saved paths:", result.saved_paths);
                 console.log("Image URLs:", imageUrls);
                 
-                setSavedPaths(imageUrls);
+                setSavedPaths(result.saved_paths);
                 setStatus("done");
                 setButtonEnabled(true);
             } catch (err) {
@@ -68,7 +74,16 @@ function SaveLoading({ capturedImages, onSaveComplete }) {
                     paddingTop: "6.5vw",
                     color: "#00A4C8",
                     textAlign: "center",
+                    paddingBottom: "1vw",
                     fontWeight: "600",
+                    width: "26.5vw",
+                    height: "7vw",
+                    margin: "auto",
+                    marginTop: "1.5vh",
+                    marginBottom: "1.5vh",
+                    backgroundColor: "white",
+                    borderRadius: "1vw",
+                    border: "solid #B2D4DA",
                 }}>사진 저장 완료!</div>
             }
             <button
