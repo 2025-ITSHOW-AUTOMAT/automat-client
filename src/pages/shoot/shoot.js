@@ -18,7 +18,7 @@ function Shoot() {
     useEffect(()=>{
         const timer = setTimeout(()=>{
             setMessage('프롬프트로 사용될 이미지 촬영이 총 3번 진행됩니다!');
-            setShotStep(5);
+            setShotStep(1);
         }, 5000);
 
         return () => clearTimeout(timer);
@@ -27,7 +27,7 @@ function Shoot() {
     useEffect(()=>{
         if(shotStep >= 1 && shotStep <= 3){
             setCountdown(5);
-            let count = 1;
+            let count = 5;
 
             const interval = setInterval(() => {
                 count -= 1;
