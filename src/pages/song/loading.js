@@ -52,9 +52,7 @@ function SongLoading() {
 
     return (
         <Frame>
-            <div style={{
-                textAlign: "center",
-            }}>
+            <div style={{ textAlign: "center" }}>
                 <div style={{
                     width: "26.5vw",
                     height: "16.5vw",
@@ -76,6 +74,14 @@ function SongLoading() {
                             fontWeight: "600",
                         }}
                     />
+                    <div style={{
+                        fontSize: "1vw",
+                        marginTop: "1vw",
+                        color: "#666666",
+                        fontWeight: "500",
+                    }}>
+                        조금 시간이 걸릴 수 있습니다. 잠시만 기다려주세요.
+                    </div>
                 </div>
             </div>
         </Frame>

@@ -28,7 +28,7 @@ const MainButton = (props) => {
           style={{
             width: '72px',
             height: '72px',
-            backgroundImage: 'url(/automatMain.png)',
+            backgroundImage: 'url(/AutomatMain.png)',
             backgroundSize: 'cover',        
             backgroundPosition: 'center',   
             backgroundRepeat: 'no-repeat',

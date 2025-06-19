@@ -24,33 +24,38 @@ export const MusicPlayerProvider = ({ children }) => {
   }, []);
 
   const playTrack = async (track) => {
-    const audio = audioRef.current;
-
-    if (currentTrack?.id === track.id) {
-      // 같은 트랙이면 재생/일시정지 토글
-      if (isPlaying) {
-        audio.pause();
-        // await audioRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        audio.play();
-        // await audioRef.current.play();
-        setIsPlaying(true);
+    try {
+      const audio = audioRef.current;
+  
+      if (!audio) return;
+  
+      // 이미 같은 트랙을 재생 중이면 토글처럼 동작
+      if (currentTrack?.id === track.id) {
+        if (isPlaying) {
+          pauseTrack();
+        } else {
+          await audio.play();
+          setIsPlaying(true);
+        }
+        return;
       }
-    } else {
-      // 다른 트랙이면 새로 재생
+  
+      // 다른 트랙일 경우: 기존 오디오 멈춤
+      audio.pause();
+      audio.currentTime = 0;
+      audio.src = track.music_url;
+  
+      await new Promise((resolve) => setTimeout(resolve, 50));
+  
+      await audio.play();
       setCurrentTrack(track);
       setIsPlaying(true);
-      audio.src = track.song_path;
-      audio.currentTime = 0;
-      try {
-        await audio.play();
-      } catch (err) {
-        console.error('Play error');
-      }
+  
+    } catch (error) {
+      console.warn('Play interrupted or blocked:', error);
     }
   };
-
+    
   const pauseTrack = () => {
     const audio = audioRef.current;
     audio.pause();
@@ -65,36 +70,21 @@ export const MusicPlayerProvider = ({ children }) => {
 
   useEffect(() => {
     const audio = audioRef.current;
-    // if (!audio || !currentTrack) return;
-
-    // audio.src = currentTrack.song_path;
-    
-    // const handleLoadedData = () => {
-    //   setDuration(audio.duration);
-    //   if (isPlaying) {
-    //     audio.play();
-    //   }
-    // };
-
-    const handleLoadedMetadata = () => {
-      setDuration(audio.duration);
-    };
-
-    const handleTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
+  
+    const handleLoadedMetadata = () => setDuration(audio.duration);
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handleEnded = () => {
       setIsPlaying(false);
       setCurrentTime(0);
+      setCurrentTrack(null);
     };
-
-    audio.addEventListener('loadeddata', handleLoadedMetadata);
+  
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
     audio.addEventListener('timeupdate', handleTimeUpdate);
     audio.addEventListener('ended', handleEnded);
-
+  
     return () => {
-      audio.removeEventListener('loadeddata', handleLoadedMetadata);
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
       audio.removeEventListener('timeupdate', handleTimeUpdate);
       audio.removeEventListener('ended', handleEnded);
     };
