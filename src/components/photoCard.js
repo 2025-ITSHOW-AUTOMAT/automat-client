@@ -1,9 +1,9 @@
 import React from 'react';
 
-const PhotoCard = ({ photo = [], translate_prompt = [] }) => {
+const PhotoCard = ({ photo = [], song_prompts = [] }) => {
     const cards = photo.map((img, idx) => ({
         id: idx + 1,
-        content: translate_prompt[idx] || "프롬프트 없음",
+        content: song_prompts[idx] || "프롬프트 없음",
         image: img,
     }));
 

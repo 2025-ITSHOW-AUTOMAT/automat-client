@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Shoot from "./pages/shoot/shoot";
-import ShootLoading from "./pages/shoot/loading";
+import ShootLoading from "./pages/shoot/shootLoading";
 import Photo from "./pages/shoot/photo";
 import SongLoading from "./pages/song/loading";
 import Sketch from "./pages/detail/sketch" 
