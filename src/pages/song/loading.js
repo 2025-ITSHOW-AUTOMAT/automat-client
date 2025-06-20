@@ -43,7 +43,7 @@ function SongLoading() {
                 navigate("/sketch", { state: { songUrl, filename } });
             } catch (error) {
                 console.error("노래 생성 중 오류 발생:", error);
-                navigate("/");
+                navigate("/sketch");
             }
         };
 
