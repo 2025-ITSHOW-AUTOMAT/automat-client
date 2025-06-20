@@ -1,13 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectButton = ({
   msg,
   submsg,
+  img,
   onClick,
   children,
   allowUpRight,
   upRightIcon: UpRightIcon
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div
       style={{
@@ -33,16 +37,15 @@ const ProjectButton = ({
     >
       {/* 오른쪽 위 아이콘 표시 */}
       {allowUpRight && UpRightIcon && (
-        <UpRightIcon
-          size={20}
-          style={{
-            position: 'absolute',
-            top: '20px',    // 상단 여백
-            right: '10px',  // 오른쪽 여백
-            color: '#00A4C8',
+          <UpRightIcon
+            size={20}
+            style={{
+              position: 'absolute',
+              top: '20px',    // 상단 여백
+              right: '10px',  // 오른쪽 여백
+              color: '#00A4C8',
 
-          }}
-        />
+            }}/>
       )}
 
       <div style={{ display: 'flex', flexDirection: 'row', gap: '19px', alignItems: 'center' }}>
@@ -51,7 +54,7 @@ const ProjectButton = ({
             style={{
               width: '72px',
               height: '72px',
-              backgroundImage: 'url(/AutomatMain.png)',
+              backgroundImage:  `url(${img || '/img/AutomatMain.png'})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
