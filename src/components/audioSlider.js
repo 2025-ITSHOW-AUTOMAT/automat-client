@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useMusicPlayer } from './musicPlayerContext';
 
 function formatTime(seconds) {
   if (isNaN(seconds)) return '0:00';
@@ -7,52 +8,62 @@ function formatTime(seconds) {
   return `${mins}:${secs}`;
 }
 
-function AudioSlider({ songUrl, onDurationLoad }) {
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    console.log("✅ AudioSlider에 전달된 songUrl:", songUrl); 
-
-    if (!songUrl) return;
-
-    const audio = new Audio(songUrl);
-    audioRef.current = audio;
-
-    const handleLoadedMetadata = () => {
-      setDuration(audio.duration);
-      if (onDurationLoad) {
-        onDurationLoad(audio.duration);
-      }
-    };
-
-    const handleTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
-    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-    audio.addEventListener('timeupdate', handleTimeUpdate);
-
-    audio.play();
-
-    return () => {
-      audio.pause();
-      audio.src = '';
-      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      audio.removeEventListener('timeupdate', handleTimeUpdate);
-    };
-  }, [songUrl]);
+const AudioSlider = () => {
+  const { currentTime, duration, seekTo } = useMusicPlayer();
 
   const handleChange = (e) => {
     const value = Number(e.target.value);
-    if (audioRef.current) {
-      audioRef.current.currentTime = value;
-    }
-    setCurrentTime(value);
+    seekTo(value);
   };
 
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
+
+// function AudioSlider({ songUrl, onDurationLoad }) {
+//   const [currentTime, setCurrentTime] = useState(0);
+//   const [duration, setDuration] = useState(0);
+//   const audioRef = useRef(null);
+// x
+//   useEffect(() => {
+//     console.log("✅ AudioSlider에 전달된 songUrl:", songUrl); 
+
+//     if (!songUrl) return;
+
+//     const audio = new Audio(songUrl);
+//     audioRef.current = audio;
+
+//     const handleLoadedMetadata = () => {
+//       setDuration(audio.duration);
+//       if (onDurationLoad) {
+//         onDurationLoad(audio.duration);
+//       }
+//     };
+
+//     const handleTimeUpdate = () => {
+//       setCurrentTime(audio.currentTime);
+//     };
+
+//     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+//     audio.addEventListener('timeupdate', handleTimeUpdate);
+
+//     audio.play();
+
+//     return () => {
+//       audio.pause();
+//       audio.src = '';
+//       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+//       audio.removeEventListener('timeupdate', handleTimeUpdate);
+//     };
+//   }, [songUrl]);
+
+//   const handleChange = (e) => {
+//     const value = Number(e.target.value);
+//     if (audioRef.current) {
+//       audioRef.current.currentTime = value;
+//     }
+//     setCurrentTime(value);
+//   };
+
+  // const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
     <div style={{ width: '97%', margin: '0 auto' }}>

@@ -75,12 +75,16 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
                 allowUpRight={allowUpRight}  // prop 넘김
                 upRightIcon={ArrowUpRight}  // 아이콘도 넘김
               />
-                {currentTrack?.id === album.id && currentTrack.music_url && (
+              {currentTrack?.id === album.id && (
+                <AudioSlider />
+              )}
+
+                {/* {currentTrack?.id === album.id && currentTrack.music_url && (
                 <AudioSlider 
                   songUrl={currentTrack.music_url} 
                   onDurationLoad={(value) => setDuration(value)}  
                 />
-              )}
+              )} */}
 
               <div style={{
                 position: 'absolute',
