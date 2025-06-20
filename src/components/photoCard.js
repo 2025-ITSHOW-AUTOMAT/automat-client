@@ -107,7 +107,7 @@ const PhotoCard = ({ photo = [], song_prompts = [] }) => {
                                     <p style={{
                                         marginLeft: "1vw",
                                         marginTop: "1vh",
-                                        fontSize: "1.5vh",
+                                        fontSize: "1vh",
                                         color: "#1C1C1C",
                                     }}>{card.content}</p>
                                 </div>
