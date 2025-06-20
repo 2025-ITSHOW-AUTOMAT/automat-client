@@ -24,38 +24,69 @@ export const MusicPlayerProvider = ({ children }) => {
   }, []);
 
   const playTrack = async (track) => {
-    try {
-      const audio = audioRef.current;
+    const audio = audioRef.current;
+    if (!audio) return;
   
-      if (!audio) return;
-  
-      // 이미 같은 트랙을 재생 중이면 토글처럼 동작
-      if (currentTrack?.id === track.id) {
-        if (isPlaying) {
-          pauseTrack();
-        } else {
-          await audio.play();
-          setIsPlaying(true);
-        }
-        return;
+    if (currentTrack?.id === track.id) {
+      if (isPlaying) {
+        audio.pause();
+        setIsPlaying(false);
+      } else {
+        await audio.play();
+        setIsPlaying(true);
       }
-  
-      // 다른 트랙일 경우: 기존 오디오 멈춤
-      audio.pause();
-      audio.currentTime = 0;
-      audio.src = track.music_url;
-  
-      await new Promise((resolve) => setTimeout(resolve, 50));
-  
-      await audio.play();
-      setCurrentTrack(track);
-      setIsPlaying(true);
-  
-    } catch (error) {
-      console.warn('Play interrupted or blocked:', error);
+      return;
     }
-  };
-    
+  
+    audio.pause();
+    audio.currentTime = 0;
+    audio.src = track.music_url;
+    await audio.play();
+  
+    setCurrentTrack(track);
+    setIsPlaying(true);
+  };  
+
+  // const playTrack = async (track) => {
+  //   try {
+  //     const audio = audioRef.current;
+  
+  //     if (!audio) return;
+  
+  //     // 같은 트랙이면 토글
+  //     if (currentTrack?.id === track.id) {
+  //       if (isPlaying) {
+  //         pauseTrack();
+  //       } else {
+  //         await audio.play();
+  //         setIsPlaying(true);
+  //       }
+  //       return;
+  //     }
+  
+  //     // 다른 트랙이면 기존 오디오 완전히 멈춤
+  //     audio.pause();
+  //     audio.currentTime = 0;
+  //     audio.src = '';
+      
+  //     // src 비운 뒤 잠깐 대기 → 브라우저가 내부적으로 멈춤 처리하도록 유도
+  //     await new Promise(resolve => setTimeout(resolve, 50));
+  
+  //     // 새 트랙 설정
+  //     audio.src = track.music_url;
+  
+  //     await new Promise(resolve => setTimeout(resolve, 50));
+  
+  //     await audio.play();
+  
+  //     setCurrentTrack(track);
+  //     setIsPlaying(true);
+  
+  //   } catch (error) {
+  //     console.warn('Play interrupted or blocked:', error);
+  //   }
+  // };
+      
   const pauseTrack = () => {
     const audio = audioRef.current;
     audio.pause();
