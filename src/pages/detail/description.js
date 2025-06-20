@@ -12,8 +12,8 @@ import axios from 'axios';
 const Description = () =>{
   const navigate = useNavigate();
   const location = useLocation();
-  const coverImage = location.state?.coverImage;
-  const coverImagePath = `https://${process.env.REACT_APP_SERVER_URL}/uploads/coverImage/${coverImage}`
+  //const coverImage = location.state?.coverImage;
+  const coverImagePath = location.state?.coverImage;
   const songPath = location.state?.songPath;
   const songUrl = `https://${process.env.REACT_APP_SERVER_URL}/uploads/song/${songPath}`;
 
@@ -26,11 +26,11 @@ const Description = () =>{
 
   const handleSubmit = async () => {
     const payload = {
-      title: title,
-      user_name: userName,
-      description: description,
-      image_path: coverImagePath,
-      song_path: songUrl
+      title: title || "이름없는 음악",
+      user_name: userName || "익명",
+      description: description || "내용없는 음악",
+      image_path: coverImagePath || "",
+      song_path: songUrl || ""
     };
   
     try {
@@ -79,7 +79,7 @@ const Description = () =>{
             }}>
               <input
                 className={styles.titleinput}
-                placeholder='제목을 정해주세요!'
+                placeholder='이 노래의 제목을 정해주세요!'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />

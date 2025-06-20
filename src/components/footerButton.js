@@ -11,6 +11,7 @@ const FooterButton = (props) => {
       border: 'solid 1px #B2D4DA',
       borderRadius: '10px',
       gap: '13px',
+      cursor: 'pointer'
     }}>
       <div style={{
         color: '#1C1C1C',

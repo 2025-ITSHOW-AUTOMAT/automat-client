@@ -21,7 +21,7 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
     const fetchAlbums = async () => {
       try {
         const response = await instance.get(`https://${process.env.REACT_APP_SERVER_URL}/album`);
-        
+        console.log(response)
         const processedAlbums = response.data.map(album => {
           let url = album.song_path;
         
@@ -69,7 +69,7 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
             
             <div style={{ flex: 1, position: 'relative' }}>
               <ProjectButton
-                msg={album.user_name}
+                msg={album.title}
                 submsg={album.description}
                 img={album.image_path}
                 onClick={() => playTrack(album)}
