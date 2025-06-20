@@ -32,9 +32,9 @@ function Sketch(){
       });
 
       const result = await res.json();
-      console.log("업로드 성공:", result.filename);
+      console.log("업로드 성공:", result.s3_url);
 
-      navigate("/description", { state: { coverImage: result.filename, songPath: filename } });
+      navigate("/description", { state: { coverImage: result.s3_url, songPath: filename } });
     } catch (err) {
       console.error("업로드 실패", err);
     }
