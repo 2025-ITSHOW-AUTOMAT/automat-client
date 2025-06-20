@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { MusicPlayerProvider } from './path/to/musicPlayerContext';
+import { MusicPlayerProvider } from './components/musicPlayerContext';
 import Shoot from "./pages/shoot/shoot";
 import ShootLoading from "./pages/shoot/shootLoading";
 import Photo from "./pages/shoot/photo";
