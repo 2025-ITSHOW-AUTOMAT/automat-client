@@ -33,7 +33,7 @@ const Canvas = forwardRef((props, ref) => {
 
   useEffect(()=>{
 
-    const socket = new WebSocket(`wss://${process.env.REACT_APP_SERVER_URL}/emotion/ws`);
+    const socket = new WebSocket(`ws://localhost:8000/emotion/ws`);
     wsRef.current = socket;
 
     socket.onopen = () => {
