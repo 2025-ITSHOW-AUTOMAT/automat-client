@@ -20,7 +20,7 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
-        const response = await instance.get(`http://localhost:8000/album`);
+        const response = await instance.get(`https://${process.env.REACT_APP_SERVER_URL}/album`);
         console.log(response)
         const processedAlbums = response.data.map(album => {
           let url = album.song_path;
