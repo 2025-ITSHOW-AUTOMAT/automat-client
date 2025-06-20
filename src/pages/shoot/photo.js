@@ -11,7 +11,7 @@ function Photo() {
     const { saved_paths, song_prompt, song_prompts } = location.state || {};
 
     const handleNext = () => {
-        navigate("/song/loading", { state: { song_prompt, saved_paths } });
+        navigate("../detail/sketch", { state: { song_prompt, saved_paths } });
     };
 
     const containerStyle = {
