@@ -20,8 +20,8 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
-        const response = await instance.get(`https://${process.env.REACT_APP_SERVER_URL}/album`);
-        
+        const response = await instance.get(`http://localhost:8000/album`);
+        console.log(response)
         const processedAlbums = response.data.map(album => {
           let url = album.song_path;
         
@@ -69,8 +69,9 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
             
             <div style={{ flex: 1, position: 'relative' }}>
               <ProjectButton
-                msg={album.user_name}
+                msg={album.title}
                 submsg={album.description}
+                // submsg={album.description}
                 onClick={() => playTrack(album)}
                 allowUpRight={allowUpRight}  // prop 넘김
                 upRightIcon={ArrowUpRight}  // 아이콘도 넘김

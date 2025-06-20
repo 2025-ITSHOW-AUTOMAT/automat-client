@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProjectButton = ({
   msg,
-  submsg,
+  submsg, 
   onClick,
   children,
   allowUpRight,
