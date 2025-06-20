@@ -71,7 +71,7 @@ const Project = ({ allowUpRight, onAlbumSelect, limit }) => {  // 🔑 prop 받�
               <ProjectButton
                 msg={album.title}
                 submsg={album.description}
-                // submsg={album.description}
+                img={album.image_path}
                 onClick={() => playTrack(album)}
                 allowUpRight={allowUpRight}  // prop 넘김
                 upRightIcon={ArrowUpRight}  // 아이콘도 넘김

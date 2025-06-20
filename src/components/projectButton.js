@@ -54,7 +54,7 @@ const ProjectButton = ({
             style={{
               width: '72px',
               height: '72px',
-              backgroundImage:  `url(${img || '/img/AutomatMain.png'})`,
+              backgroundImage:  `url(${img || '/AutomatMain.png'})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
